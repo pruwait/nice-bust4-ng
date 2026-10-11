@@ -4,15 +4,13 @@ from esphome.components import uart
 from esphome.const import CONF_ID
 
 DEPENDENCIES = ['uart']
+CODEOWNERS = ["@pruwait"]
 
-# Пространство имён должно совпадать с namespace в вашем C++ коде
 nice_t4_ns = cg.esphome_ns.namespace('nice_t4')
-
-# Имя класса должно точно совпадать с основным классом-обёрткой в C++
-NiceT4Component = nice_t4_ns.class_('NiceT4Component', cg.Component, uart.UARTDevice)
+NiceT4Hub = nice_t4_ns.class_('NiceT4Hub', cg.Component, uart.UARTDevice)
 
 CONFIG_SCHEMA = cv.Schema({
-    cv.GenerateID(): cv.declare_id(NiceT4Component),
+    cv.GenerateID(): cv.declare_id(NiceT4Hub),
 }).extend(uart.UART_DEVICE_SCHEMA)
 
 async def to_code(config):
