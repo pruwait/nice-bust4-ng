@@ -1,0 +1,284 @@
+[
+ {
+  "cmd": 0,
+  "id": 7599530,
+  "const": "CTRL_RESET",
+  "name": "Reset last command"
+ },
+ {
+  "cmd": 1,
+  "id": 7599620,
+  "const": "CTRL_STEP_STEP",
+  "name": "Step step"
+ },
+ {
+  "cmd": 2,
+  "id": 7268111,
+  "const": "CTRL_STOP",
+  "name": "Stop manouver"
+ },
+ {
+  "cmd": 3,
+  "id": 4069753,
+  "const": "CTRL_OPEN",
+  "name": "Open"
+ },
+ {
+  "cmd": 4,
+  "id": 6962031,
+  "const": "CTRL_CLOSE",
+  "name": "Close"
+ },
+ {
+  "cmd": 5,
+  "id": 3782850,
+  "const": "CTRL_OPEN_PARTIAL_1",
+  "name": "Partial open 1"
+ },
+ {
+  "cmd": 6,
+  "id": 9264303,
+  "const": "CTRL_OPEN_PARTIAL_2",
+  "name": "Partial open 2"
+ },
+ {
+  "cmd": 7,
+  "id": 1438933,
+  "const": "CTRL_OPEN_PARTIAL_3",
+  "name": "Partial open 3"
+ },
+ {
+  "cmd": 8,
+  "id": 5325981,
+  "const": "CTRL_CLOSE_PARTIAL_1",
+  "name": "Partial close 1"
+ },
+ {
+  "cmd": 9,
+  "id": 7599532,
+  "const": "CTRL_CLOSE_PARTIAL_2",
+  "name": "Partial close 2"
+ },
+ {
+  "cmd": 10,
+  "id": 3236263,
+  "const": "CTRL_CLOSE_PARTIAL_3",
+  "name": "Partial close 3"
+ },
+ {
+  "cmd": 11,
+  "id": 7599629,
+  "const": "CTRL_STEP_STEP_CONDOMINIUM",
+  "name": "Step step condominium"
+ },
+ {
+  "cmd": 12,
+  "id": 7599541,
+  "const": "CTRL_STEP_STEP_HIGH_PRIORITY",
+  "name": "Step step high priority"
+ },
+ {
+  "cmd": 13,
+  "id": 6587030,
+  "const": "CTRL_OPEN_BLOCK",
+  "name": "Open block"
+ },
+ {
+  "cmd": 14,
+  "id": 9256312,
+  "const": "CTRL_CLOSE_BLOCK",
+  "name": "Close block"
+ },
+ {
+  "cmd": 15,
+  "id": 1035139,
+  "const": "CTRL_BLOCK",
+  "name": "Block"
+ },
+ {
+  "cmd": 16,
+  "id": 2149566,
+  "const": "CTRL_UNBLOCK",
+  "name": "Unblock"
+ },
+ {
+  "cmd": 17,
+  "id": 7599618,
+  "const": "CTRL_TIMER_COURTESY_LIGHT",
+  "name": "Timer courtesy light"
+ },
+ {
+  "cmd": 18,
+  "id": 7599717,
+  "const": "CTRL_ON_OFF_COURTESY_LIGHT",
+  "name": "On/Off Courtesy light"
+ },
+ {
+  "cmd": 19,
+  "id": 7599695,
+  "const": "CTRL_STEP_STEP_MASTER_DOOR",
+  "name": "Step step master door"
+ },
+ {
+  "cmd": 20,
+  "id": 7599585,
+  "const": "CTRL_OPEN_MASTER_DOOR",
+  "name": "Open master door"
+ },
+ {
+  "cmd": 21,
+  "id": 7599772,
+  "const": "CTRL_CLOSE_MASTER_DOOR",
+  "name": "Close master door"
+ },
+ {
+  "cmd": 22,
+  "id": 7599640,
+  "const": "CTRL_STEP_STEP_SLAVE_DOOR",
+  "name": "Step step slave door"
+ },
+ {
+  "cmd": 23,
+  "id": 7599750,
+  "const": "CTRL_OPEN_SLAVE_DOOR",
+  "name": "Open slave door"
+ },
+ {
+  "cmd": 24,
+  "id": 7599552,
+  "const": "CTRL_CLOSE_SLAVE_DOOR",
+  "name": "Close slave door"
+ },
+ {
+  "cmd": 25,
+  "id": 7599739,
+  "const": "CTRL_UNBLOCK_AND_OPEN",
+  "name": "Unblock and open"
+ },
+ {
+  "cmd": 26,
+  "id": 7599607,
+  "const": "CTRL_UNBLOCK_AND_CLOSE",
+  "name": "Unblock and close"
+ },
+ {
+  "cmd": 27,
+  "id": 7599805,
+  "const": "CTRL_OPNC_ON",
+  "name": "Photo bluebus ON"
+ },
+ {
+  "cmd": 28,
+  "id": 7599684,
+  "const": "CTRL_OPNC_OFF",
+  "name": "Photo bluebus OFF"
+ },
+ {
+  "cmd": 29,
+  "id": 7599651,
+  "const": "CTRL_LOOP_ON",
+  "name": "Loop ON"
+ },
+ {
+  "cmd": 30,
+  "id": 7599563,
+  "const": "CTRL_LOOP_OFF",
+  "name": "Loop OFF"
+ },
+ {
+  "cmd": 33,
+  "id": 7599816,
+  "const": "CTRL_ALT",
+  "name": "Alt"
+ },
+ {
+  "cmd": 34,
+  "id": 7599728,
+  "const": "CTRL_FOTO_OPEN",
+  "name": "Photo open"
+ },
+ {
+  "cmd": 35,
+  "id": 7599783,
+  "const": "CTRL_FOTO",
+  "name": "Photo"
+ },
+ {
+  "cmd": 36,
+  "id": 7599574,
+  "const": "CTRL_FOTO_1",
+  "name": "Photo 1"
+ },
+ {
+  "cmd": 37,
+  "id": 7599662,
+  "const": "CTRL_FOTO_2",
+  "name": "Photo 2"
+ },
+ {
+  "cmd": 38,
+  "id": 7599706,
+  "const": "CTRL_FOTO_3",
+  "name": "Photo 3"
+ },
+ {
+  "cmd": 39,
+  "id": 7599673,
+  "const": "CTRL_EMERGENCY_ALT",
+  "name": "Emergency alt"
+ },
+ {
+  "cmd": 40,
+  "id": 7599761,
+  "const": "CTRL_EMERGENCY_COMMAND",
+  "name": "Emergency command"
+ },
+ {
+  "cmd": 41,
+  "id": 7599596,
+  "const": "CTRL_INTERLOCKING_ALT",
+  "name": "Interlocking alt"
+ },
+ {
+  "cmd": 42,
+  "id": 7599794,
+  "const": "CTRL_SBA_SENSOR",
+  "name": "SBA Sensor"
+ },
+ {
+  "cmd": 43,
+  "id": 1245890,
+  "const": "CTRL_EMERGENCY_OPEN",
+  "name": "Emergency open"
+ },
+ {
+  "cmd": 44,
+  "id": 2147681,
+  "const": "CTRL_EMERGENCY_CLOSE",
+  "name": "Emergency close"
+ },
+ {
+  "cmd": 48,
+  "id": 2147682,
+  "const": "CTRL_TESTING_STEP_STEP",
+  "name": "Step-Sep command for Testing"
+ },
+ {
+  "cmd": 49,
+  "id": 2147683,
+  "const": "CTRL_BUZZER_TEST",
+  "name": "Command for Buzzer testing"
+ },
+ {
+  "cmd": 65,
+  "id": 2147684,
+  "const": "CTRL_COURTESY_LIGHT_SWITCH_OFF",
+  "name": "Courtesy light off"
+ },
+ {
+  "cmd": 66,
+  "id": 2147685,
+  "const": "CTRL_COURTESY_LIGHT_SWITCH_ON",
+  "name": "Courtesy light on"
+ }
+]

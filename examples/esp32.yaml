@@ -1,0 +1,36 @@
+# ЧЕРНОВИК целевого формата (P2). Компонент ещё не реализован: файл показывает, как будет выглядеть конфигурация.
+esphome:
+  name: gate
+esp32:
+  board: esp32dev
+
+uart:
+  id: t4_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 19200
+
+nice_t4:
+  id: gate_hub
+  uart_id: t4_uart
+  address: 0x0066        # ADR и EPT самого модуля
+  identity: oview        # oview | it4wifi
+  model: auto
+  allow_write: false     # запись параметров только по явному включению
+
+cover:
+  - platform: nice_t4
+    nice_t4_id: gate_hub
+    name: Ворота
+
+button:
+  - platform: nice_t4
+    nice_t4_id: gate_hub
+    command: PARTIAL_OPEN_1
+    name: Калитка
+
+text_sensor:
+  - platform: nice_t4
+    nice_t4_id: gate_hub
+    type: menu_json
+    name: Меню привода

@@ -1,0 +1,2102 @@
+[
+ {
+  "device": 0,
+  "code": 0,
+  "id": 6307690,
+  "const": "STD_ROOT_MENU",
+  "name": "Root menu"
+ },
+ {
+  "device": 0,
+  "code": 1,
+  "id": 8009004,
+  "const": "STD_ADDRESS",
+  "name": "Address"
+ },
+ {
+  "device": 0,
+  "code": 2,
+  "id": 1635520,
+  "const": "STD_ENDPOINT",
+  "name": "Endpoint"
+ },
+ {
+  "device": 0,
+  "code": 3,
+  "id": 7121949,
+  "const": "STD_MULTICAST_ADDRESS",
+  "name": "Multicast"
+ },
+ {
+  "device": 0,
+  "code": 4,
+  "id": 4488525,
+  "const": "STD_PROFILE",
+  "name": "Profile"
+ },
+ {
+  "device": 0,
+  "code": 5,
+  "id": 62849,
+  "const": "STD_BUFFER_SIZE",
+  "name": "Buffer size"
+ },
+ {
+  "device": 0,
+  "code": 7,
+  "id": 7590257,
+  "const": "STD_MAC",
+  "name": "MAC"
+ },
+ {
+  "device": 0,
+  "code": 8,
+  "id": 8851584,
+  "const": "STD_MAKER",
+  "name": "Maker"
+ },
+ {
+  "device": 0,
+  "code": 9,
+  "id": 7608853,
+  "const": "STD_PRODUCT",
+  "name": "Product"
+ },
+ {
+  "device": 0,
+  "code": 10,
+  "id": 9442181,
+  "const": "STD_HARDWARE_VERSION",
+  "name": "Hardware version"
+ },
+ {
+  "device": 0,
+  "code": 11,
+  "id": 5889378,
+  "const": "STD_FIRMWARE_VERSION",
+  "name": "Firmware version"
+ },
+ {
+  "device": 0,
+  "code": 12,
+  "id": 7010193,
+  "const": "STD_RADIO_DESCRIPTION",
+  "name": "Description"
+ },
+ {
+  "device": 0,
+  "code": 16,
+  "id": 8747901,
+  "const": "STD_MENU",
+  "name": "Menu"
+ },
+ {
+  "device": 0,
+  "code": 17,
+  "id": 2240421,
+  "const": "STD_INFO_FUNCTION",
+  "name": "Info function"
+ },
+ {
+  "device": 0,
+  "code": 18,
+  "id": 6871402,
+  "const": "STD_FUNCTION_AUTHORIZATION",
+  "name": "Function authorization"
+ },
+ {
+  "device": 0,
+  "code": 19,
+  "id": 4021371,
+  "const": "STD_INSTALLER_PASSWORD",
+  "name": "Installer password"
+ },
+ {
+  "device": 0,
+  "code": 20,
+  "id": 5775682,
+  "const": "STD_USER_PASSWORD",
+  "name": "User password"
+ },
+ {
+  "device": 0,
+  "code": 32,
+  "id": 5775685,
+  "const": "STD_PRODUCT_DTL",
+  "name": "Product DTL"
+ },
+ {
+  "device": 0,
+  "code": 33,
+  "id": 5775683,
+  "const": "STD_WIFI_MAC",
+  "name": "WIFI MAC address"
+ },
+ {
+  "device": 0,
+  "code": 34,
+  "id": 5775684,
+  "const": "STD_WIFI_SETUP_CODE",
+  "name": "WIFI SETUP code"
+ },
+ {
+  "device": 0,
+  "code": 35,
+  "id": 5775686,
+  "const": "STD_PAIRED_PSU_ADDRESS",
+  "name": "Paired PSU T4 address"
+ },
+ {
+  "device": 0,
+  "code": 36,
+  "id": 5775687,
+  "const": "STD_PAIRED_PSU_ENDPOINT",
+  "name": "Paired PSU T4 endpoint"
+ },
+ {
+  "device": 4,
+  "code": 0,
+  "id": 1075939,
+  "const": "CTRL_AUTOMATION_TYPE",
+  "name": "Type automation"
+ },
+ {
+  "device": 4,
+  "code": 1,
+  "id": 9079382,
+  "const": "CTRL_AUTOMATION_STATUS",
+  "name": "State automation"
+ },
+ {
+  "device": 4,
+  "code": 2,
+  "id": 1339851,
+  "const": "CTRL_AUTOMATION_SLAVE_STATUS",
+  "name": "Slave state automation"
+ },
+ {
+  "device": 4,
+  "code": 3,
+  "id": 10015,
+  "const": "CTRL_STR_VERSION_CONFIGURATION",
+  "name": "PCB version / configuration (only barriers)"
+ },
+ {
+  "device": 4,
+  "code": 4,
+  "id": 10028,
+  "const": "CTRL_STR_MODULAR_CU_VERSION",
+  "name": "Modular control unit board version"
+ },
+ {
+  "device": 4,
+  "code": 5,
+  "id": 5566779,
+  "const": "CTRL_SEARCH_DEVICES",
+  "name": "Search devices"
+ },
+ {
+  "device": 4,
+  "code": 6,
+  "id": 5566777,
+  "const": "CTRL_FUNCTION_MODE",
+  "name": "Function mode"
+ },
+ {
+  "device": 4,
+  "code": 7,
+  "id": 2641481,
+  "const": "CTRL_RADIO_CONTROLS_MODE_2",
+  "name": "Radio controls mode 2"
+ },
+ {
+  "device": 4,
+  "code": 8,
+  "id": 10016,
+  "const": "CTRL_STR_COMMANDS",
+  "name": "Commands"
+ },
+ {
+  "device": 4,
+  "code": 9,
+  "id": 2427018,
+  "const": "CTRL_ACTIVATE_RECEIVER",
+  "name": "Activate receiver"
+ },
+ {
+  "device": 4,
+  "code": 10,
+  "id": 3593564,
+  "const": "CTRL_SEARCH_BLUEBUS_DEVICES",
+  "name": "Search Bluebus devices"
+ },
+ {
+  "device": 4,
+  "code": 11,
+  "id": 5532936,
+  "const": "CTRL_SEARCH_POSITIONS",
+  "name": "Search positions"
+ },
+ {
+  "device": 4,
+  "code": 12,
+  "id": 442631,
+  "const": "CTRL_DELETE_PARAMETERS",
+  "name": "Delete parameters"
+ },
+ {
+  "device": 4,
+  "code": 13,
+  "id": 4947059,
+  "const": "CTRL_INSTALLATIONS_TYPE",
+  "name": "Type of installation"
+ },
+ {
+  "device": 4,
+  "code": 15,
+  "id": 8723634,
+  "const": "CTRL_CMD_QUOTA",
+  "name": "Command go to position"
+ },
+ {
+  "device": 4,
+  "code": 16,
+  "id": 3387943,
+  "const": "CTRL_TRANSFORMATION_RATIO",
+  "name": "Transformation ratio"
+ },
+ {
+  "device": 4,
+  "code": 17,
+  "id": 8440045,
+  "const": "CTRL_POSITION_CURRENT",
+  "name": "Current position"
+ },
+ {
+  "device": 4,
+  "code": 18,
+  "id": 2871635,
+  "const": "CTRL_POSITION_MAXIMUM_OPENING",
+  "name": "Maximum opening position"
+ },
+ {
+  "device": 4,
+  "code": 19,
+  "id": 1466490,
+  "const": "CTRL_POSITION_MINIMUM_CLOSING",
+  "name": "Maximum closing position"
+ },
+ {
+  "device": 4,
+  "code": 20,
+  "id": 1466491,
+  "const": "CTRL_INSTALLATION_FORCE",
+  "name": "Force used during quotes installation - multipage [1 = opening, 2 = closing]"
+ },
+ {
+  "device": 4,
+  "code": 21,
+  "id": 1466492,
+  "const": "CTRL_INSTALLATION_SPEED",
+  "name": "Speed used during quotes installation - multipage [1 = opening, 2 = closing]"
+ },
+ {
+  "device": 4,
+  "code": 22,
+  "id": 1466500,
+  "const": "CTRL_OUT_OF_SERVICE_STATUS",
+  "name": "CU Out of service status - managed by the installer for remote maintenance the CU returns back as in service after the timing defined by the relative period"
+ },
+ {
+  "device": 4,
+  "code": 23,
+  "id": 1466501,
+  "const": "CTRL_OUT_OF_SERVICE_PERIOD",
+  "name": "The period in seconds of the out of service status without any trigger"
+ },
+ {
+  "device": 4,
+  "code": 24,
+  "id": 1056375,
+  "const": "CTRL_POSITION_OPENING",
+  "name": "Opening position"
+ },
+ {
+  "device": 4,
+  "code": 25,
+  "id": 1846165,
+  "const": "CTRL_POSITION_CLOSING",
+  "name": "Closing position"
+ },
+ {
+  "device": 4,
+  "code": 26,
+  "id": 10017,
+  "const": "CTRL_STR_POSITION_OPEN_PERSON",
+  "name": "Position open person"
+ },
+ {
+  "device": 4,
+  "code": 27,
+  "id": 4562039,
+  "const": "CTRL_PEDESTRIAN_POSITION_OPENING_1",
+  "name": "Pedestrian opening position 1"
+ },
+ {
+  "device": 4,
+  "code": 28,
+  "id": 6335402,
+  "const": "CTRL_PEDESTRIAN_POSITION_OPENING_2",
+  "name": "Pedestrian opening position 2"
+ },
+ {
+  "device": 4,
+  "code": 29,
+  "id": 4021588,
+  "const": "CTRL_PEDESTRIAN_POSITION_OPENING_3",
+  "name": "Pedestrian opening position 3"
+ },
+ {
+  "device": 4,
+  "code": 30,
+  "id": 4021589,
+  "const": "CTRL_REALIGNMENT_OPN",
+  "name": "Position to reach in OPEN before execute a closing during realignment"
+ },
+ {
+  "device": 4,
+  "code": 31,
+  "id": 4021590,
+  "const": "CTRL_OPN_TOLLERANCE",
+  "name": "Limit switch stop tolerance for \\\"open door/gate\\\" definition"
+ },
+ {
+  "device": 4,
+  "code": 32,
+  "id": 9949081,
+  "const": "CTRL_INTERMEDIATE_POSITION",
+  "name": "Intermediate position"
+ },
+ {
+  "device": 4,
+  "code": 33,
+  "id": 9949082,
+  "const": "CTRL_INTERMEDIATE_POSITION_1",
+  "name": "Intermediate position 1"
+ },
+ {
+  "device": 4,
+  "code": 34,
+  "id": 3853520,
+  "const": "CTRL_INTERMEDIATE_POSITION_2",
+  "name": "Intermediate position 2"
+ },
+ {
+  "device": 4,
+  "code": 35,
+  "id": 7754964,
+  "const": "CTRL_INTERMEDIATE_POSITION_3",
+  "name": "Intermediate position 3"
+ },
+ {
+  "device": 4,
+  "code": 36,
+  "id": 8800479,
+  "const": "CTRL_DECELERATION_POSITION_OPENING",
+  "name": "Deceleration opening position"
+ },
+ {
+  "device": 4,
+  "code": 37,
+  "id": 3080779,
+  "const": "CTRL_DECELERATION_POSITION_CLOSING",
+  "name": "Deceleration closing position"
+ },
+ {
+  "device": 4,
+  "code": 38,
+  "id": 2431291,
+  "const": "CTRL_DECELERATION_POSITION_INTERMEDIATE",
+  "name": "Deceleration intermediate position"
+ },
+ {
+  "device": 4,
+  "code": 39,
+  "id": 7673210,
+  "const": "CTRL_INTERMEDIATE_DECELERATION_DELETE",
+  "name": "Delete intermediate deceleration"
+ },
+ {
+  "device": 4,
+  "code": 40,
+  "id": 5864013,
+  "const": "CTRL_PHASE_SHIFT_OPENING",
+  "name": "Opening phase shift (M2 on M1)"
+ },
+ {
+  "device": 4,
+  "code": 41,
+  "id": 7225956,
+  "const": "CTRL_PHASE_SHIFT_CLOSING",
+  "name": "Closing phase shift (M1 on M2)"
+ },
+ {
+  "device": 4,
+  "code": 42,
+  "id": 9373009,
+  "const": "CTRL_DISCHARGING_OPENING",
+  "name": "Discharging opening"
+ },
+ {
+  "device": 4,
+  "code": 43,
+  "id": 8882468,
+  "const": "CTRL_DISCHARGING_CLOSING",
+  "name": "Discharging closing"
+ },
+ {
+  "device": 4,
+  "code": 44,
+  "id": 5331403,
+  "const": "CTRL_MANAGEMENT_DISCHARGING_OPENING",
+  "name": "Management discharging opening"
+ },
+ {
+  "device": 4,
+  "code": 45,
+  "id": 4689615,
+  "const": "CTRL_MANAGEMENT_DISCHARGING_CLOSING",
+  "name": "Management discharging closing"
+ },
+ {
+  "device": 4,
+  "code": 46,
+  "id": 2164660,
+  "const": "CTRL_POSITION_RECOVERY_FOR_SENSIBLE_BORDER",
+  "name": "Position recovery for sensible border"
+ },
+ {
+  "device": 4,
+  "code": 47,
+  "id": 2844223,
+  "const": "CTRL_RESET_ENCODER",
+  "name": "Reset encoder"
+ },
+ {
+  "device": 4,
+  "code": 48,
+  "id": 4957402,
+  "const": "CTRL_WORKING_WITH_2_ENGINES",
+  "name": "Working with 2 engines"
+ },
+ {
+  "device": 4,
+  "code": 49,
+  "id": 8868365,
+  "const": "CTRL_QUANTITY_BRIEF_INVERSION",
+  "name": "Quantity brief inversion"
+ },
+ {
+  "device": 4,
+  "code": 50,
+  "id": 3498341,
+  "const": "CTRL_INITIAL_DECELERATION_DURING_OPENING",
+  "name": "Initial deceleration during opening"
+ },
+ {
+  "device": 4,
+  "code": 51,
+  "id": 8250990,
+  "const": "CTRL_INITIAL_DECELERATION_DURING_CLOSING",
+  "name": "Initial deceleration during closing"
+ },
+ {
+  "device": 4,
+  "code": 52,
+  "id": 9680364,
+  "const": "CTRL_BALANCING",
+  "name": "Balancing"
+ },
+ {
+  "device": 4,
+  "code": 53,
+  "id": 3762770,
+  "const": "CTRL_BRAKING_LEVEL",
+  "name": "Braking level"
+ },
+ {
+  "device": 4,
+  "code": 54,
+  "id": 6262722,
+  "const": "CTRL_BRAKE_MODE",
+  "name": "Brake mode"
+ },
+ {
+  "device": 4,
+  "code": 55,
+  "id": 825231,
+  "const": "CTRL_TIME_FORCE_OPERATION",
+  "name": "Time force operation"
+ },
+ {
+  "device": 4,
+  "code": 56,
+  "id": 10019,
+  "const": "CTRL_STR_SENSIBILITY_MANAGEMENT",
+  "name": "Sensibility management"
+ },
+ {
+  "device": 4,
+  "code": 57,
+  "id": 1600045,
+  "const": "CTRL_SENSITIVITY_OBSTACLE",
+  "name": "Obstacle sensitivity"
+ },
+ {
+  "device": 4,
+  "code": 58,
+  "id": 8202364,
+  "const": "CTRL_SENSITIVITY_OPENING",
+  "name": "Opening sensitivity"
+ },
+ {
+  "device": 4,
+  "code": 59,
+  "id": 7143072,
+  "const": "CTRL_SENSITIVITY_CLOSING",
+  "name": "Closing sensitivity"
+ },
+ {
+  "device": 4,
+  "code": 60,
+  "id": 8203958,
+  "const": "CTRL_SENSITIVITY_DECELERATION",
+  "name": "Deceleration sensitivity"
+ },
+ {
+  "device": 4,
+  "code": 61,
+  "id": 3387861,
+  "const": "CTRL_SENSITIVITY_DECELERATION_OPENING",
+  "name": "Deceleration opening sensitivity"
+ },
+ {
+  "device": 4,
+  "code": 62,
+  "id": 4784952,
+  "const": "CTRL_SENSITIVITY_DECELERATION_CLOSING",
+  "name": "Deceleration closing sensitivity"
+ },
+ {
+  "device": 4,
+  "code": 63,
+  "id": 5616437,
+  "const": "CTRL_DELETE_MAPS_IN_MEMORY",
+  "name": "Delete maps in memory"
+ },
+ {
+  "device": 4,
+  "code": 64,
+  "id": 10020,
+  "const": "CTRL_STR_SPEED_MANAGEMENT",
+  "name": "Speed management"
+ },
+ {
+  "device": 4,
+  "code": 65,
+  "id": 2389270,
+  "const": "CTRL_SPEED_CRUISE",
+  "name": "Cruise speed"
+ },
+ {
+  "device": 4,
+  "code": 66,
+  "id": 5592680,
+  "const": "CTRL_SPEED_OPENING",
+  "name": "Opening speed"
+ },
+ {
+  "device": 4,
+  "code": 67,
+  "id": 6623556,
+  "const": "CTRL_SPEED_CLOSING",
+  "name": "Closing speed"
+ },
+ {
+  "device": 4,
+  "code": 68,
+  "id": 7832211,
+  "const": "CTRL_SPEED_DECELERATION",
+  "name": "Deceleration speed"
+ },
+ {
+  "device": 4,
+  "code": 69,
+  "id": 5773216,
+  "const": "CTRL_SPEED_DECELERATION_OPENING",
+  "name": "Deceleration opening speed"
+ },
+ {
+  "device": 4,
+  "code": 70,
+  "id": 4103007,
+  "const": "CTRL_SPEED_DECELERATION_CLOSING",
+  "name": "Deceleration closing speed"
+ },
+ {
+  "device": 4,
+  "code": 71,
+  "id": 10021,
+  "const": "CTRL_STR_STRENGTH_MANAGEMENT",
+  "name": "Strength management"
+ },
+ {
+  "device": 4,
+  "code": 72,
+  "id": 1865897,
+  "const": "CTRL_FORCE_MANAGEMENT",
+  "name": "Management force (mode)"
+ },
+ {
+  "device": 4,
+  "code": 73,
+  "id": 4948313,
+  "const": "CTRL_FORCE_CRUISE",
+  "name": "Cruise force"
+ },
+ {
+  "device": 4,
+  "code": 74,
+  "id": 7548480,
+  "const": "CTRL_FORCE_OPENING",
+  "name": "Opening force"
+ },
+ {
+  "device": 4,
+  "code": 75,
+  "id": 3927711,
+  "const": "CTRL_FORCE_CLOSING",
+  "name": "Closing force"
+ },
+ {
+  "device": 4,
+  "code": 76,
+  "id": 2284146,
+  "const": "CTRL_DECELERATION_FORCE",
+  "name": "Deceleration force"
+ },
+ {
+  "device": 4,
+  "code": 77,
+  "id": 1802833,
+  "const": "CTRL_DECELERATION_FORCE_OPENING",
+  "name": "Deceleration opening force"
+ },
+ {
+  "device": 4,
+  "code": 78,
+  "id": 3938930,
+  "const": "CTRL_DECELERATION_FORCE_CLOSING",
+  "name": "Deceleration closing force"
+ },
+ {
+  "device": 4,
+  "code": 79,
+  "id": 5015559,
+  "const": "CTRL_MANUAL_FORCE",
+  "name": "Manual force"
+ },
+ {
+  "device": 4,
+  "code": 80,
+  "id": 7737516,
+  "const": "CTRL_OUTPUT",
+  "name": "Output"
+ },
+ {
+  "device": 4,
+  "code": 81,
+  "id": 2328852,
+  "const": "CTRL_OUTPUT_1",
+  "name": "Output 1"
+ },
+ {
+  "device": 4,
+  "code": 82,
+  "id": 9262670,
+  "const": "CTRL_OUTPUT_2",
+  "name": "Output 2"
+ },
+ {
+  "device": 4,
+  "code": 83,
+  "id": 5608227,
+  "const": "CTRL_OUTPUT_3",
+  "name": "Output 3"
+ },
+ {
+  "device": 4,
+  "code": 84,
+  "id": 5608228,
+  "const": "CTRL_OUTPUT_4",
+  "name": "Output 4"
+ },
+ {
+  "device": 4,
+  "code": 85,
+  "id": 5608229,
+  "const": "CTRL_OUTPUT_5",
+  "name": "Output 5"
+ },
+ {
+  "device": 4,
+  "code": 86,
+  "id": 5608230,
+  "const": "CTRL_OUTPUT_6",
+  "name": "Output 6"
+ },
+ {
+  "device": 4,
+  "code": 88,
+  "id": 1550656,
+  "const": "CTRL_TIME_SCA",
+  "name": "Time SCA"
+ },
+ {
+  "device": 4,
+  "code": 89,
+  "id": 6768826,
+  "const": "CTRL_TIME_FLASH",
+  "name": "Time FLASH"
+ },
+ {
+  "device": 4,
+  "code": 90,
+  "id": 7476130,
+  "const": "CTRL_TIME_ELECTRIC_LOCK",
+  "name": "Time eletric lock"
+ },
+ {
+  "device": 4,
+  "code": 91,
+  "id": 5136974,
+  "const": "CTRL_TIME_COURTESY_LIGHT",
+  "name": "Time courtesy light"
+ },
+ {
+  "device": 4,
+  "code": 92,
+  "id": 790543,
+  "const": "CTRL_TIME_SUCTION_CUP",
+  "name": "Time suction cup"
+ },
+ {
+  "device": 4,
+  "code": 93,
+  "id": 9146547,
+  "const": "CTRL_MODE_TRAFFIC_LIGHT_BLUEBUS",
+  "name": "Mode traffic light BlueBus"
+ },
+ {
+  "device": 4,
+  "code": 94,
+  "id": 1274205,
+  "const": "CTRL_ACCELERATION",
+  "name": "Acceleration"
+ },
+ {
+  "device": 4,
+  "code": 95,
+  "id": 2297062,
+  "const": "CTRL_DECELERATION",
+  "name": "Deceleration"
+ },
+ {
+  "device": 4,
+  "code": 96,
+  "id": 5015570,
+  "const": "CTRL_MODE_COMMAND",
+  "name": "Mode command"
+ },
+ {
+  "device": 4,
+  "code": 97,
+  "id": 3353085,
+  "const": "CTRL_MODE_COMMAND_STEPSTEP",
+  "name": "Mode command STEP-STEP"
+ },
+ {
+  "device": 4,
+  "code": 98,
+  "id": 5887956,
+  "const": "CTRL_MODE_COMMAND_OPEN_PARTIAL",
+  "name": "Mode command PARTIAL OPEN"
+ },
+ {
+  "device": 4,
+  "code": 99,
+  "id": 8209924,
+  "const": "CTRL_MODE_COMMAND_OPEN",
+  "name": "Mode command OPEN"
+ },
+ {
+  "device": 4,
+  "code": 100,
+  "id": 9927427,
+  "const": "CTRL_MODE_COMMAND_CLOSE",
+  "name": "Mode command CLOSE"
+ },
+ {
+  "device": 4,
+  "code": 101,
+  "id": 4623956,
+  "const": "CTRL_MODE_COMMAND_STOP",
+  "name": "Mode command STOP"
+ },
+ {
+  "device": 4,
+  "code": 102,
+  "id": 5566775,
+  "const": "CTRL_MODE_DELAY_INVERSION_FOTO",
+  "name": "Mode delay inversion foto"
+ },
+ {
+  "device": 4,
+  "code": 103,
+  "id": 5566776,
+  "const": "CTRL_MODE_DELAY_INVERSION_RIB",
+  "name": "Command Mode delay reverse from safety edge"
+ },
+ {
+  "device": 4,
+  "code": 104,
+  "id": 2334076,
+  "const": "CTRL_MODE_COMMAND_PHOTO_CLOSE",
+  "name": "Mode command PHOTO CLOSE"
+ },
+ {
+  "device": 4,
+  "code": 105,
+  "id": 6062552,
+  "const": "CTRL_MODE_COMMAND_PHOTO_OPEN",
+  "name": "Mode command PHOTO OPEN"
+ },
+ {
+  "device": 4,
+  "code": 106,
+  "id": 8574406,
+  "const": "CTRL_MODE_COMMAND_PHOTO_3",
+  "name": "Mode command PHOTO 3"
+ },
+ {
+  "device": 4,
+  "code": 107,
+  "id": 5103256,
+  "const": "CTRL_MODE_COMMAND_ALT_OPEN",
+  "name": "Mode command ALT open"
+ },
+ {
+  "device": 4,
+  "code": 108,
+  "id": 1657646,
+  "const": "CTRL_MODE_COMMAND_ALT_CLOSE",
+  "name": "Mode command ALT close"
+ },
+ {
+  "device": 4,
+  "code": 109,
+  "id": 9836991,
+  "const": "CTRL_MODE_COMMAND_PHOTO_1",
+  "name": "Mode command PHOTO 1"
+ },
+ {
+  "device": 4,
+  "code": 110,
+  "id": 302517,
+  "const": "CTRL_MODE_COMMAND_ALT_PRECLOSING",
+  "name": "Mode command ALT pre closing"
+ },
+ {
+  "device": 4,
+  "code": 111,
+  "id": 302518,
+  "const": "CTRL_MODE_COMMAND_EMERGENCY",
+  "name": "Mode command emergency"
+ },
+ {
+  "device": 4,
+  "code": 112,
+  "id": 6324265,
+  "const": "CTRL_INPUT",
+  "name": "Input"
+ },
+ {
+  "device": 4,
+  "code": 113,
+  "id": 6324266,
+  "const": "CTRL_INPUT_1",
+  "name": "Input 1"
+ },
+ {
+  "device": 4,
+  "code": 114,
+  "id": 8284863,
+  "const": "CTRL_INPUT_2",
+  "name": "Input 2"
+ },
+ {
+  "device": 4,
+  "code": 115,
+  "id": 9239590,
+  "const": "CTRL_INPUT_3",
+  "name": "Input 3"
+ },
+ {
+  "device": 4,
+  "code": 116,
+  "id": 6671450,
+  "const": "CTRL_INPUT_4",
+  "name": "Input 4"
+ },
+ {
+  "device": 4,
+  "code": 117,
+  "id": 8876541,
+  "const": "CTRL_INPUT_AUX_TYPE",
+  "name": "Input AUX type"
+ },
+ {
+  "device": 4,
+  "code": 118,
+  "id": 2146606,
+  "const": "CTRL_MODE_COMMAND_REVERSE_OBSTACLE_DURING_OPENING",
+  "name": "Mode command n. reverse obstacle during opening"
+ },
+ {
+  "device": 4,
+  "code": 119,
+  "id": 1655292,
+  "const": "CTRL_MODE_COMMAND_REVERSE_OBSTACLE_DURING_CLOSING",
+  "name": "Mode command n. reverse obstacle during closing"
+ },
+ {
+  "device": 4,
+  "code": 120,
+  "id": 1608617,
+  "const": "CTRL_MODE_COMMAND_REVERSE_OBSTACLE_OPEN",
+  "name": "Mode command REV. OBSTACLES open"
+ },
+ {
+  "device": 4,
+  "code": 121,
+  "id": 6099903,
+  "const": "CTRL_MODE_COMMAND_REVERSE_OBSTACLE_CLOSE",
+  "name": "Mode command REV. OBSTACLES close"
+ },
+ {
+  "device": 4,
+  "code": 122,
+  "id": 5140647,
+  "const": "CTRL_MODE_INPUT_RECLOSE_AFTER_PHOTO",
+  "name": "Mode input for Reclose after photo"
+ },
+ {
+  "device": 4,
+  "code": 123,
+  "id": 7197972,
+  "const": "CTRL_MODE_INPUT_PAUSE_TIME",
+  "name": "Mode input for Pause time"
+ },
+ {
+  "device": 4,
+  "code": 124,
+  "id": 6671451,
+  "const": "CTRL_INPUT_5",
+  "name": "Input 5"
+ },
+ {
+  "device": 4,
+  "code": 125,
+  "id": 6671452,
+  "const": "CTRL_INPUT_6",
+  "name": "Input 6"
+ },
+ {
+  "device": 4,
+  "code": 127,
+  "id": 6671454,
+  "const": "CTRL_BUZZER_ENABLE",
+  "name": "Buzzer enable"
+ },
+ {
+  "device": 4,
+  "code": 128,
+  "id": 2359676,
+  "const": "CTRL_AUTOMATIC_CLOSE",
+  "name": "Automatic close"
+ },
+ {
+  "device": 4,
+  "code": 129,
+  "id": 971173,
+  "const": "CTRL_PAUSE_TIME",
+  "name": "Pause time"
+ },
+ {
+  "device": 4,
+  "code": 130,
+  "id": 5147043,
+  "const": "CTRL_AUTOMATIC_WORKING_1",
+  "name": "Automatic working 1"
+ },
+ {
+  "device": 4,
+  "code": 131,
+  "id": 10023,
+  "const": "CTRL_STR_CLOSE_AFTER_PHOTO",
+  "name": "Close after photo"
+ },
+ {
+  "device": 4,
+  "code": 132,
+  "id": 4998787,
+  "const": "CTRL_RECLOSE_AFTER_PHOTO",
+  "name": "Reclose after photo (activation)"
+ },
+ {
+  "device": 4,
+  "code": 133,
+  "id": 7591728,
+  "const": "CTRL_RECLOSE_AFTER_PHOTO_TIME",
+  "name": "Time Reclose after photo"
+ },
+ {
+  "device": 4,
+  "code": 134,
+  "id": 4938768,
+  "const": "CTRL_RECLOSE_AFTER_PHOTO_MODE",
+  "name": "Mode Reclose after photo"
+ },
+ {
+  "device": 4,
+  "code": 135,
+  "id": 10024,
+  "const": "CTRL_STR_CLOSE_ALWAYS",
+  "name": "Close Always"
+ },
+ {
+  "device": 4,
+  "code": 136,
+  "id": 7782787,
+  "const": "CTRL_ALWAYS_CLOSE",
+  "name": "Always close (activation)"
+ },
+ {
+  "device": 4,
+  "code": 137,
+  "id": 9551493,
+  "const": "CTRL_ALWAYS_CLOSE_TIME",
+  "name": "Time Always close"
+ },
+ {
+  "device": 4,
+  "code": 138,
+  "id": 2234134,
+  "const": "CTRL_ALWAYS_CLOSE_MODE",
+  "name": "Mode Always close"
+ },
+ {
+  "device": 4,
+  "code": 139,
+  "id": 10025,
+  "const": "CTRL_STR_STAND_BY",
+  "name": "Stand-byy"
+ },
+ {
+  "device": 4,
+  "code": 140,
+  "id": 4508123,
+  "const": "CTRL_STANDBY_ACTIVATION",
+  "name": "Stand-by (activation)"
+ },
+ {
+  "device": 4,
+  "code": 141,
+  "id": 2808238,
+  "const": "CTRL_STANDBY_ACTIVATION_TIME",
+  "name": "Time Stand-by"
+ },
+ {
+  "device": 4,
+  "code": 142,
+  "id": 7542768,
+  "const": "CTRL_STANDBY_ACTIVATION_MODE",
+  "name": "Mode Stand-by"
+ },
+ {
+  "device": 4,
+  "code": 143,
+  "id": 10026,
+  "const": "CTRL_STR_TORQUE",
+  "name": "Torque"
+ },
+ {
+  "device": 4,
+  "code": 144,
+  "id": 8275148,
+  "const": "CTRL_STARTING_TORQUE",
+  "name": "Starting torque (activation)"
+ },
+ {
+  "device": 4,
+  "code": 145,
+  "id": 1229362,
+  "const": "CTRL_STARTING_TORQUE_TIME",
+  "name": "Time Starting torque"
+ },
+ {
+  "device": 4,
+  "code": 146,
+  "id": 50771,
+  "const": "CTRL_WATER_HAMMER",
+  "name": "Water hammer"
+ },
+ {
+  "device": 4,
+  "code": 147,
+  "id": 10027,
+  "const": "CTRL_STR_PRE_FLASHING",
+  "name": "Pre-flashing"
+ },
+ {
+  "device": 4,
+  "code": 148,
+  "id": 6804952,
+  "const": "CTRL_PREFLASHING",
+  "name": "Preflashing (activation)"
+ },
+ {
+  "device": 4,
+  "code": 149,
+  "id": 9519552,
+  "const": "CTRL_PREFLASHING_TIME_OPEN",
+  "name": "Time Preflashing open"
+ },
+ {
+  "device": 4,
+  "code": 150,
+  "id": 7756079,
+  "const": "CTRL_TYPE_INVERSION",
+  "name": "Type inversion (brief or complete)"
+ },
+ {
+  "device": 4,
+  "code": 151,
+  "id": 5176992,
+  "const": "CTRL_COMPENSATION_SENSIBLE_BORDER",
+  "name": "Compensation sensible border"
+ },
+ {
+  "device": 4,
+  "code": 152,
+  "id": 4533370,
+  "const": "CTRL_MODE_SLAVE",
+  "name": "Mode slave"
+ },
+ {
+  "device": 4,
+  "code": 153,
+  "id": 3659519,
+  "const": "CTRL_PREFLASHING_TIME_CLOSE",
+  "name": "Time Preflashing close"
+ },
+ {
+  "device": 4,
+  "code": 154,
+  "id": 8452089,
+  "const": "CTRL_BLOCK_AUTOMATISM",
+  "name": "Block automatism"
+ },
+ {
+  "device": 4,
+  "code": 155,
+  "id": 8452090,
+  "const": "CTRL_INTERNAL_RADIO_INH",
+  "name": "Internal radio switch"
+ },
+ {
+  "device": 4,
+  "code": 156,
+  "id": 3560469,
+  "const": "CTRL_KEY_LOCK",
+  "name": "Keylock"
+ },
+ {
+  "device": 4,
+  "code": 157,
+  "id": 4518077,
+  "const": "CTRL_WEIGHT",
+  "name": "Weight"
+ },
+ {
+  "device": 4,
+  "code": 158,
+  "id": 4518078,
+  "const": "CTRL_HEATING",
+  "name": "Heating"
+ },
+ {
+  "device": 4,
+  "code": 159,
+  "id": 4518079,
+  "const": "CTRL_BURGLARY_MODE",
+  "name": "Anti-burglary Mode"
+ },
+ {
+  "device": 4,
+  "code": 160,
+  "id": 8274675,
+  "const": "CTRL_ALWAYS_INVERT",
+  "name": "Always Invert"
+ },
+ {
+  "device": 4,
+  "code": 161,
+  "id": 8274676,
+  "const": "CTRL_WIFI_MODULE_IS_PRESENT",
+  "name": "Wifi Module is present"
+ },
+ {
+  "device": 4,
+  "code": 162,
+  "id": 3218386,
+  "const": "CTRL_DECELERATIONS",
+  "name": "Decelerations"
+ },
+ {
+  "device": 4,
+  "code": 163,
+  "id": 8459311,
+  "const": "CTRL_INVERT_MOVEMENT_DIRECTION",
+  "name": "Invert movement direction"
+ },
+ {
+  "device": 4,
+  "code": 164,
+  "id": 277278,
+  "const": "CTRL_POSITION_AMPEROMETRIC_EXCLUSION",
+  "name": "Position of amperometric exclusion"
+ },
+ {
+  "device": 4,
+  "code": 165,
+  "id": 7592925,
+  "const": "CTRL_PULSES_SEGMENT_MAPPING",
+  "name": "Pulses per segment mapping"
+ },
+ {
+  "device": 4,
+  "code": 166,
+  "id": 2590279,
+  "const": "CTRL_DISABLE_CONTROL",
+  "name": "Disable control"
+ },
+ {
+  "device": 4,
+  "code": 167,
+  "id": 3686488,
+  "const": "CTRL_TIME_MAXIMUM_WORK",
+  "name": "Time maximum work"
+ },
+ {
+  "device": 4,
+  "code": 168,
+  "id": 9007870,
+  "const": "CTRL_EMERGENCY_MODE",
+  "name": "Emergency mode"
+ },
+ {
+  "device": 4,
+  "code": 169,
+  "id": 9249975,
+  "const": "CTRL_TEST_MODE",
+  "name": "Test mode"
+ },
+ {
+  "device": 4,
+  "code": 170,
+  "id": 3908500,
+  "const": "CTRL_RESERVED_1",
+  "name": "Reserved 1"
+ },
+ {
+  "device": 4,
+  "code": 171,
+  "id": 6738972,
+  "const": "CTRL_RESERVED_2",
+  "name": "Reserved 2"
+ },
+ {
+  "device": 4,
+  "code": 172,
+  "id": 5015359,
+  "const": "CTRL_MINIMUM_FREQUENCY",
+  "name": "Minimum frequency"
+ },
+ {
+  "device": 4,
+  "code": 173,
+  "id": 6832549,
+  "const": "CTRL_INVERTER_MODE",
+  "name": "Inverter Mode"
+ },
+ {
+  "device": 4,
+  "code": 174,
+  "id": 1803872,
+  "const": "CTRL_EMERGENCY_DECELERATION",
+  "name": "Emergency deceleration"
+ },
+ {
+  "device": 4,
+  "code": 175,
+  "id": 8590019,
+  "const": "CTRL_POSITION_PHOTO_EXCLUSION",
+  "name": "Position of PHOTO exclusion"
+ },
+ {
+  "device": 4,
+  "code": 176,
+  "id": 3419901,
+  "const": "CTRL_MAINTENANCE_MANAGEMENT",
+  "name": "Maintenance management"
+ },
+ {
+  "device": 4,
+  "code": 177,
+  "id": 1540972,
+  "const": "CTRL_THRESHOLD_ALARM_MAINTENANCE",
+  "name": "Treshold alarm mainteance"
+ },
+ {
+  "device": 4,
+  "code": 178,
+  "id": 3804801,
+  "const": "CTRL_MAINTENANCE_MANEUVERS_COUNTER",
+  "name": "Maintenance maneuvers counter"
+ },
+ {
+  "device": 4,
+  "code": 179,
+  "id": 4505637,
+  "const": "CTRL_MANEUVERS_COUNTER",
+  "name": "Total maneuvers counter"
+ },
+ {
+  "device": 4,
+  "code": 180,
+  "id": 4741454,
+  "const": "CTRL_MAINTENANCE_MANEUVERS_DELETE",
+  "name": "Delete mainteance maneuvers"
+ },
+ {
+  "device": 4,
+  "code": 181,
+  "id": 4741455,
+  "const": "CTRL_SENSITIVITY_INTERVENTION_TIME",
+  "name": "Sensitivity Intervention Time"
+ },
+ {
+  "device": 4,
+  "code": 182,
+  "id": 4741456,
+  "const": "CTRL_IO_EXP_BOARD",
+  "name": "I/O expansion board for modular control unit"
+ },
+ {
+  "device": 4,
+  "code": 183,
+  "id": 4741457,
+  "const": "CTRL_MODULAR_BOARD_OPERATIONS",
+  "name": " Modular control unit: european version or UL325 version"
+ },
+ {
+  "device": 4,
+  "code": 184,
+  "id": 7746240,
+  "const": "CTRL_RADIO_CODES_MANAGEMENT",
+  "name": "Radio codes management"
+ },
+ {
+  "device": 4,
+  "code": 185,
+  "id": 7746241,
+  "const": "CTRL_COURTESY_LIGHT_MNG",
+  "name": "Courtesy light"
+ },
+ {
+  "device": 4,
+  "code": 186,
+  "id": 6512582,
+  "const": "CONTROLLER_RADIO_CODEINMEMORY",
+  "name": "Built in Radio code in memory"
+ },
+ {
+  "device": 4,
+  "code": 187,
+  "id": 9983324,
+  "const": "CONTROLLER_RADIO_CFG_CODES",
+  "name": "Built in Radio codes configuration"
+ },
+ {
+  "device": 4,
+  "code": 188,
+  "id": 4053865,
+  "const": "CONTROLLER_RADIO_ACTIVATION",
+  "name": "Built in Radio activation"
+ },
+ {
+  "device": 4,
+  "code": 189,
+  "id": 2833588,
+  "const": "CONTROLLER_TLC_CNT",
+  "name": "Controller profile: Read TLC List counter (total and detailed counter)"
+ },
+ {
+  "device": 4,
+  "code": 190,
+  "id": 2833589,
+  "const": "CONTROLLER_CODE_BMASK",
+  "name": "Controller profile: supported radio protocol by the receiver (Bitmask Radio Coding enabled on device)"
+ },
+ {
+  "device": 4,
+  "code": 191,
+  "id": 2833590,
+  "const": "CONTROLLER_EDITEDCODE_BMASK",
+  "name": "Controller profile:  enabled radio protocol on the receiver"
+ },
+ {
+  "device": 4,
+  "code": 193,
+  "id": 2833587,
+  "const": "CONTROLLER_ADV_ABILITATION",
+  "name": "Controller profile: Advanced Abilitation, Session challenge"
+ },
+ {
+  "device": 4,
+  "code": 205,
+  "id": 5592683,
+  "const": "CTRL_SENSITIVITY_GND_IMPACT",
+  "name": "Sensitivity used by Door to check the impact to ground"
+ },
+ {
+  "device": 4,
+  "code": 206,
+  "id": 5592682,
+  "const": "CTRL_FORCE_GND_IMPACT",
+  "name": "Force used by Door to check the impact to ground (when mechanical blocks are not used)"
+ },
+ {
+  "device": 4,
+  "code": 207,
+  "id": 5592681,
+  "const": "CTRL_INSTALLATION_SPEED_2",
+  "name": "Installation speed"
+ },
+ {
+  "device": 4,
+  "code": 208,
+  "id": 9274519,
+  "const": "CTRL_DIAGNOSTICS_BLUEBUS_DEVICES",
+  "name": "Diagnostics BlueBus devices"
+ },
+ {
+  "device": 4,
+  "code": 209,
+  "id": 7905414,
+  "const": "CTRL_DIAGNOSTICS_INPUT_OUTPUT",
+  "name": "Diagnostics inputs / outputs"
+ },
+ {
+  "device": 4,
+  "code": 210,
+  "id": 6158445,
+  "const": "CTRL_DIAGNOSTICS_HARDWARE",
+  "name": "Diagnostics hardware"
+ },
+ {
+  "device": 4,
+  "code": 211,
+  "id": 1228196,
+  "const": "CTRL_DIAGNOSTICS_OTHER",
+  "name": "Diagnostics other"
+ },
+ {
+  "device": 4,
+  "code": 212,
+  "id": 7681383,
+  "const": "CTRL_DIAGNOSTICS_INVERTER",
+  "name": "Diagnostics inverter"
+ },
+ {
+  "device": 4,
+  "code": 213,
+  "id": 1228197,
+  "const": "CTRL_DIAGNOSTICS_VISUAL",
+  "name": "Diagnostics visual"
+ },
+ {
+  "device": 4,
+  "code": 214,
+  "id": 1228198,
+  "const": "CTRL_DIAGNOSTICS_MODULAR_SM_ADVLOG",
+  "name": "Diagnostics info for current MTB and LCU state machine used into Modular control unit"
+ },
+ {
+  "device": 4,
+  "code": 218,
+  "id": 4339554,
+  "const": "CTRL_LOG_8_MANEUVERS",
+  "name": "Log last 8 maneuvers"
+ },
+ {
+  "device": 4,
+  "code": 219,
+  "id": 4339556,
+  "const": "CTRL_ADVANCED_LOG",
+  "name": "Last 8 Advanced diagnostics status"
+ },
+ {
+  "device": 4,
+  "code": 220,
+  "id": 4349555,
+  "const": "CTRL_LOG_TEST_1",
+  "name": "Log test 1"
+ },
+ {
+  "device": 4,
+  "code": 221,
+  "id": 4337558,
+  "const": "CTRL_LOG_TEST_2",
+  "name": "Log test 2"
+ },
+ {
+  "device": 4,
+  "code": 222,
+  "id": 4329550,
+  "const": "CTRL_LOG_TEST_3",
+  "name": "Log test 3"
+ },
+ {
+  "device": 4,
+  "code": 223,
+  "id": 4319553,
+  "const": "CTRL_LOG_TEST_4",
+  "name": "Log test 4"
+ },
+ {
+  "device": 4,
+  "code": 224,
+  "id": 4444056,
+  "const": "CTRL_FORCE_AUTOMATIC_MINIMUM",
+  "name": "Minimum automatic force"
+ },
+ {
+  "device": 4,
+  "code": 225,
+  "id": 498275,
+  "const": "CTRL_FORCE_AUTOMATIC_MAXIMUM",
+  "name": "Maximum automatic force"
+ },
+ {
+  "device": 4,
+  "code": 226,
+  "id": 4424053,
+  "const": "CTRL_FORCE_AUTOMATIC_SLOWING_DOWN_MAXIMUM",
+  "name": "Automatic strength for minimum slow down"
+ },
+ {
+  "device": 4,
+  "code": 227,
+  "id": 4454058,
+  "const": "CTRL_FORCE_AUTOMATIC_SLOWING_DOWN_MINIMUM",
+  "name": "Automatic strength for maximum slow down"
+ },
+ {
+  "device": 4,
+  "code": 228,
+  "id": 3627905,
+  "const": "CTRL_LOOP_SENSIBILITY",
+  "name": "Sensibility loop"
+ },
+ {
+  "device": 4,
+  "code": 229,
+  "id": 9826978,
+  "const": "CTRL_LOOP_CALIBRATION",
+  "name": "Calibration loop"
+ },
+ {
+  "device": 4,
+  "code": 230,
+  "id": 1916844,
+  "const": "CTRL_LOOP_SUPPLY",
+  "name": "Supply loop"
+ },
+ {
+  "device": 4,
+  "code": 231,
+  "id": 5492771,
+  "const": "CTRL_LOOP_WORKING_ACTIVATE",
+  "name": "Activate loop working"
+ },
+ {
+  "device": 4,
+  "code": 232,
+  "id": 4070976,
+  "const": "CTRL_LOOP_WORKING_MODE",
+  "name": "Mode loop working"
+ },
+ {
+  "device": 4,
+  "code": 233,
+  "id": 1604118,
+  "const": "CTRL_LOOP_RECALIBRATION_TIME",
+  "name": "Time loop recalibration"
+ },
+ {
+  "device": 4,
+  "code": 234,
+  "id": 699761,
+  "const": "CTRL_LOOP_ACTIVATION_MODE",
+  "name": "Mode activation loop"
+ },
+ {
+  "device": 4,
+  "code": 235,
+  "id": 1073027,
+  "const": "CTRL_LOOP_ACTIVATION_TIME",
+  "name": "Time activation loop"
+ },
+ {
+  "device": 4,
+  "code": 236,
+  "id": 3072195,
+  "const": "CTRL_BURGLARY_LOOP_DETECT",
+  "name": "Loop Burglary function"
+ },
+ {
+  "device": 4,
+  "code": 237,
+  "id": 2833584,
+  "const": "CTRL_LOOP_FREQUENCY_VIEW",
+  "name": "View frequency loop"
+ },
+ {
+  "device": 4,
+  "code": 238,
+  "id": 2833585,
+  "const": "CTRL_PRESS_TEST",
+  "name": "View pressure test"
+ },
+ {
+  "device": 4,
+  "code": 239,
+  "id": 2833586,
+  "const": "CTRL_TEST4",
+  "name": "Test 4"
+ },
+ {
+  "device": 4,
+  "code": 240,
+  "id": 10002,
+  "const": "CTRL_STR_INSTALLATION",
+  "name": "Installation"
+ },
+ {
+  "device": 4,
+  "code": 241,
+  "id": 10008,
+  "const": "CTRL_STR_PARAMETERS_MAIN",
+  "name": "Main parameters"
+ },
+ {
+  "device": 4,
+  "code": 242,
+  "id": 10007,
+  "const": "CTRL_STR_PARAMETERS_ADVANCED",
+  "name": "Advanced parameters"
+ },
+ {
+  "device": 4,
+  "code": 243,
+  "id": 10010,
+  "const": "CTRL_STR_POSITIONS",
+  "name": "Positions"
+ },
+ {
+  "device": 4,
+  "code": 244,
+  "id": 10011,
+  "const": "CTRL_STR_SECURITY",
+  "name": "Security"
+ },
+ {
+  "device": 4,
+  "code": 245,
+  "id": 10005,
+  "const": "CTRL_STR_MAINTENANCE",
+  "name": "Maintenance"
+ },
+ {
+  "device": 4,
+  "code": 246,
+  "id": 10001,
+  "const": "CTRL_STR_DIAGNOSTICS",
+  "name": "Diagnostics"
+ },
+ {
+  "device": 4,
+  "code": 247,
+  "id": 10006,
+  "const": "CTRL_STR_OPTIONS",
+  "name": "Options"
+ },
+ {
+  "device": 4,
+  "code": 248,
+  "id": 10013,
+  "const": "CTRL_STR_SETUP_INPUTS",
+  "name": "Inputs setup"
+ },
+ {
+  "device": 4,
+  "code": 249,
+  "id": 10014,
+  "const": "CTRL_STR_SETUP_OUTPUTS",
+  "name": "Outputs setup"
+ },
+ {
+  "device": 4,
+  "code": 250,
+  "id": 10012,
+  "const": "CTRL_STR_SETUP_COMMANDS",
+  "name": "Commands setup"
+ },
+ {
+  "device": 4,
+  "code": 251,
+  "id": 10009,
+  "const": "CTRL_STR_PASSWORD",
+  "name": "Password"
+ },
+ {
+  "device": 4,
+  "code": 252,
+  "id": 10000,
+  "const": "CTRL_STR_COMPENSATION_LEVEL",
+  "name": "Level compensation"
+ },
+ {
+  "device": 4,
+  "code": 253,
+  "id": 10004,
+  "const": "CTRL_STR_LOOP_DETECTOR",
+  "name": "Loop detector"
+ },
+ {
+  "device": 4,
+  "code": 254,
+  "id": 10003,
+  "const": "CTRL_STR_INVERTER",
+  "name": "Inverter"
+ },
+ {
+  "device": 10,
+  "code": 0,
+  "id": 9983158,
+  "const": "RADIO_DEVICE",
+  "name": "Device type"
+ },
+ {
+  "device": 10,
+  "code": 8,
+  "id": 9983279,
+  "const": "RADIO_EXIT_STATE",
+  "name": "Output status"
+ },
+ {
+  "device": 10,
+  "code": 9,
+  "id": 9983345,
+  "const": "RADIO_SEND_COMMAND",
+  "name": "Send command to output"
+ },
+ {
+  "device": 10,
+  "code": 16,
+  "id": 9983136,
+  "const": "RADIO_PIN",
+  "name": "PIN"
+ },
+ {
+  "device": 10,
+  "code": 32,
+  "id": 4904974,
+  "const": "RADIO_CLEAN",
+  "name": "Delete parameters in memory"
+ },
+ {
+  "device": 10,
+  "code": 37,
+  "id": 6512581,
+  "const": "RADIO_CODEINMEMORY",
+  "name": "Radio code in memory"
+ },
+ {
+  "device": 10,
+  "code": 38,
+  "id": 4053864,
+  "const": "RADIO_ACTIVATION",
+  "name": "Radio activation"
+ },
+ {
+  "device": 10,
+  "code": 48,
+  "id": 9983246,
+  "const": "RADIO_MEMORY_ACCESS",
+  "name": "Memory access"
+ },
+ {
+  "device": 10,
+  "code": 49,
+  "id": 9983202,
+  "const": "RADIO_MANAGE_CERTS",
+  "name": "Certifies management"
+ },
+ {
+  "device": 10,
+  "code": 50,
+  "id": 6350795,
+  "const": "RADIO_ALTERA",
+  "name": "Altera key"
+ },
+ {
+  "device": 10,
+  "code": 51,
+  "id": 9983125,
+  "const": "RADIO_KEY1_DISTRIBUTOR",
+  "name": "Distributor key"
+ },
+ {
+  "device": 10,
+  "code": 52,
+  "id": 3375687,
+  "const": "RADIO_KEY2_INSTALLER",
+  "name": "Installer key"
+ },
+ {
+  "device": 10,
+  "code": 53,
+  "id": 3530594,
+  "const": "RADIO_KEY3_INSTALLATION",
+  "name": "Installation key"
+ },
+ {
+  "device": 10,
+  "code": 64,
+  "id": 9983224,
+  "const": "RADIO_CFG",
+  "name": "Radio configuration"
+ },
+ {
+  "device": 10,
+  "code": 65,
+  "id": 9983323,
+  "const": "RADIO_CFG_CODES",
+  "name": "Radio codes configuration"
+ },
+ {
+  "device": 10,
+  "code": 66,
+  "id": 9983147,
+  "const": "RADIO_ENABLED_RADIO_CODE",
+  "name": "Radio code group enabled"
+ },
+ {
+  "device": 10,
+  "code": 72,
+  "id": 9983301,
+  "const": "RADIO_TIMER_1",
+  "name": "Timer 1"
+ },
+ {
+  "device": 10,
+  "code": 73,
+  "id": 9983290,
+  "const": "RADIO_TIMER_2",
+  "name": "Timer 2"
+ },
+ {
+  "device": 10,
+  "code": 80,
+  "id": 9983180,
+  "const": "RADIO_SEND_CODE",
+  "name": "Send radio code"
+ },
+ {
+  "device": 10,
+  "code": 85,
+  "id": 9983148,
+  "const": "RADIO_PLN2P_ALIAS",
+  "name": "PLN2+ Alias id"
+ },
+ {
+  "device": 10,
+  "code": 86,
+  "id": 9983149,
+  "const": "RADIO_PLN2P_BIND_LIST",
+  "name": "PLN2+ binding list"
+ },
+ {
+  "device": 10,
+  "code": 96,
+  "id": 9983150,
+  "const": "RADIO_PLN2P_FORWARD_DEP_ENABLE",
+  "name": "PLN2+ DEP forwarding configuration"
+ },
+ {
+  "device": 10,
+  "code": 111,
+  "id": 9983151,
+  "const": "RADIO_ADV_ABILITATION",
+  "name": "Radio profile: Advanced Abilitation, Session challenge"
+ },
+ {
+  "device": 10,
+  "code": 112,
+  "id": 9983152,
+  "const": "RADIO_TLC_CNT",
+  "name": "Radio profile: Read TLC List counter (total and detailed counter)"
+ },
+ {
+  "device": 10,
+  "code": 113,
+  "id": 9983153,
+  "const": "RADIO_CODE_BMASK",
+  "name": "Radio profile: supported radio protocol by the receiver (Bitmask Radio Coding enabled on device)"
+ },
+ {
+  "device": 10,
+  "code": 114,
+  "id": 9983154,
+  "const": "RADIO_EDITEDCODE_BMASK",
+  "name": "Radio profile:  enabled radio protocol on the receiver"
+ },
+ {
+  "device": 17,
+  "code": 1,
+  "id": 20001,
+  "const": "PSU_BPS_ERRORS",
+  "name": "PSU profile:  Error for the PSU version with powerSwitch"
+ },
+ {
+  "device": 17,
+  "code": 2,
+  "id": 20002,
+  "const": "PSU_STATUS",
+  "name": "PSU profile: Charging/Erogation/Need to charge info and errors"
+ },
+ {
+  "device": 17,
+  "code": 3,
+  "id": 20003,
+  "const": "PSU_ADC_ERROR",
+  "name": "PSU profile:   Error in the reading of current flow during charge on PSU"
+ },
+ {
+  "device": 17,
+  "code": 4,
+  "id": 20004,
+  "const": "PSU_SEPIC_ERROR",
+  "name": "PSU profile:  Error in the IC for charging on PSU"
+ },
+ {
+  "device": 17,
+  "code": 5,
+  "id": 20005,
+  "const": "PSU_CHARGE_COUNT",
+  "name": "PSU profile:  Amount of time the PSU has been in charging state"
+ },
+ {
+  "device": 17,
+  "code": 6,
+  "id": 20006,
+  "const": "PSU_DISCHARGE_COUNT",
+  "name": "PSU profile:  Amount of time the PSU has been in erogation state"
+ },
+ {
+  "device": 17,
+  "code": 7,
+  "id": 20007,
+  "const": "PSU_UNDERVOLTAGE_COUNT",
+  "name": "PSU profile:  Amount of time the PSU has gone undervoltage"
+ },
+ {
+  "device": 17,
+  "code": 8,
+  "id": 20008,
+  "const": "PSU_RESET_COUNTERS",
+  "name": "PSU profile:  Parameter to reset the counters"
+ },
+ {
+  "device": 17,
+  "code": 9,
+  "id": 20009,
+  "const": "PSU_RESET_TIME_TO_RECHARGE",
+  "name": "PSU profile:  time needed to recharge"
+ },
+ {
+  "device": 17,
+  "code": 16,
+  "id": 20016,
+  "const": "PSU_RESET_TIME_IN_CHARGE",
+  "name": "PSU profile:  time in charge"
+ },
+ {
+  "device": 17,
+  "code": 17,
+  "id": 20017,
+  "const": "PSU_BAPTISM",
+  "name": "PSU profile:  baptism to define if the automation is PS125, PS325 or ..."
+ },
+ {
+  "device": 17,
+  "code": 18,
+  "id": 20018,
+  "const": "PSU_VOLTAGES",
+  "name": "PSU profile: voltages measured by the PSU unit"
+ },
+ {
+  "device": 17,
+  "code": 19,
+  "id": 20019,
+  "const": "PSU_BATT_TEMP",
+  "name": "PSU profile: temperature of the PSU"
+ },
+ {
+  "device": 17,
+  "code": 20,
+  "id": 20020,
+  "const": "PSU_BATT_PERC",
+  "name": "PSU profile: percentage of charge of the PSU"
+ },
+ {
+  "device": 17,
+  "code": 21,
+  "id": 20021,
+  "const": "PSU_BATT_TYPE",
+  "name": "PSU profile:  type of the PSU (enum)"
+ }
+]
