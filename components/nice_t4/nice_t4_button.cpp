@@ -12,12 +12,15 @@ void NiceT4Button::dump_config() {
 }
 
 void NiceT4Button::press_action() {
-  ESP_LOGD(TAG, "Button pressed, sending command: 0x%02X", this->command_);
+  ESP_LOGD(TAG, ">>> Button pressed, command: 0x%02X", this->command_);
   
   if (hub_) {
-    hub_->send_dep_cmd(this->command_);
+    bool res = hub_->send_dep_cmd(this->command_);
+    if (!res) {
+      ESP_LOGE(TAG, ">>> send_dep_cmd returned false!");
+    }
   } else {
-    ESP_LOGE(TAG, "Hub is not initialized!");
+    ESP_LOGE(TAG, ">>> Hub pointer is null!");
   }
 }
 
