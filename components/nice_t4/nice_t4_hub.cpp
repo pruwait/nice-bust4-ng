@@ -14,7 +14,8 @@ void NiceT4Hub::setup() {
   ESP_LOGCONFIG(TAG, "  Allow Write: %s", allow_write_ ? "true" : "false");
   
   // Инициализируем T4Engine с адресом из конфигурации
-  engine_ = std::make_unique<T4Engine>(*this, Address(address_));
+  // Address требует два параметра: adr и ept (endpoint)
+  engine_ = std::make_unique<T4Engine>(*this, Address(address_, 0x00));
   engine_->set_bus_idle_ms(100);
   ESP_LOGI(TAG, "Nice T4 Hub initialized (P2 stage)");
 }
@@ -27,8 +28,6 @@ void NiceT4Hub::loop() {
 
 void NiceT4Hub::dump_config() {
   ESP_LOGCONFIG(TAG, "Nice T4 Hub:");
-  LOG_PIN("  TX Pin: ", this->tx_pin_);
-  LOG_PIN("  RX Pin: ", this->rx_pin_);
   ESP_LOGCONFIG(TAG, "  Address: 0x%02X", address_);
   ESP_LOGCONFIG(TAG, "  Identity: 0x%02X", identity_);
   ESP_LOGCONFIG(TAG, "  Model: %s", model_.c_str());
@@ -51,7 +50,8 @@ void NiceT4Hub::write(const uint8_t *data, size_t n) {
 
 int NiceT4Hub::read_byte() {
   uint8_t b;
-  if (this->read_byte(&b)) {
+  // Явно вызываем метод из базового класса UARTDevice
+  if (this->uart::UARTDevice::read_byte(&b)) {
     return b;
   }
   return -1;
