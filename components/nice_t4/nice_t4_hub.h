@@ -31,10 +31,13 @@ class NiceT4Hub : public Component, public uart::UARTDevice, public Transport {
   const std::string& get_model() const { return model_; }
   bool get_allow_write() const { return allow_write_; }
 
+  // Метод для отправки DEP-команды (CMD)
+  bool send_dep_cmd(uint8_t cmd_code);
+
  protected:
   std::unique_ptr<T4Engine> engine_;
-  uint8_t address_ = 0x01;
-  uint8_t identity_ = 0x00;
+  uint8_t address_ = 0x66; // EPT адрес ESP-модуля (по умолчанию 0x66)
+  uint8_t identity_ = 0x01; // DEVICE (0x01 для O-View, 0x02 для IT4WIFI и т.д.)
   std::string model_ = "auto";
   bool allow_write_ = true;
 };
