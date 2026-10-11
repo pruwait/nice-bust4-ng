@@ -13,6 +13,12 @@ class NiceT4Hub : public Component, public uart::UARTDevice, public Transport {
   void loop() override;
   void dump_config() override;
 
+  // Сеттеры для параметров из YAML
+  void set_address(uint8_t addr) { address_ = addr; }
+  void set_identity(uint8_t id) { identity_ = id; }
+  void set_model(const std::string &model) { model_ = model; }
+  void set_allow_write(bool allow) { allow_write_ = allow; }
+
   // Реализация интерфейса Transport для T4Engine
   uint32_t now_ms() override { return millis(); }
   void send_break() override;
@@ -20,9 +26,17 @@ class NiceT4Hub : public Component, public uart::UARTDevice, public Transport {
   int read_byte() override;
 
   T4Engine* get_engine() { return engine_.get(); }
+  uint8_t get_address() const { return address_; }
+  uint8_t get_identity() const { return identity_; }
+  const std::string& get_model() const { return model_; }
+  bool get_allow_write() const { return allow_write_; }
 
  protected:
   std::unique_ptr<T4Engine> engine_;
+  uint8_t address_ = 0x01;
+  uint8_t identity_ = 0x00;
+  std::string model_ = "auto";
+  bool allow_write_ = true;
 };
 
 }  // namespace nice_t4
