@@ -1,22 +1,6 @@
 #include "nice_t4_hub.h"
 #include "esphome/core/log.h"
 
-// === Хак для прямого доступа к аппаратному UART на ESP8266 ===
-#ifdef USE_ESP8266
-#include <uart.h> // Аппаратные функции ядра ESP8266
-
-namespace esphome {
-namespace uart {
-// Наследуемся, чтобы получить доступ к protected-полю uart_
-class ESP8266UartComponentHack : public ESP8266UartComponent {
- public:
-  uart_t* get_hw_uart() { return this->uart_; }
-};
-}  // namespace uart
-}  // namespace esphome
-#endif
-// ============================================================
-
 namespace esphome {
 namespace nice_t4 {
 
@@ -49,54 +33,30 @@ void NiceT4Hub::dump_config() {
 }
 
 void NiceT4Hub::send_break() {
-  // 1. Очищаем высокоуровневые буферы ESPHome
+  // 1. Гарантируем, что аппаратный UART полностью завершил предыдущую передачу
   this->flush();
 
-#ifdef USE_ESP8266
-  // 2. Прямой доступ к аппаратному UART ESP8266
-  auto *uart_comp = static_cast<esphome::uart::ESP8266UartComponentHack*>(this->parent_);
-  uart_t *hw_uart = uart_comp->get_hw_uart();
-  
-  if (hw_uart) {
-    uart_flush(hw_uart);                       // Очищаем аппаратный FIFO
-    uart_set_baudrate(hw_uart, 9200);          // Переключаем на 9200 бод
+  // 2. Получаем доступ к TX пину через публичный API ESPHome
+  auto *tx_pin = this->parent_->get_tx_pin();
+  if (tx_pin != nullptr) {
+    // 3. Принудительно опускаем линию в LOW (break condition)
+    tx_pin->digital_write(false);
     
-    uint8_t break_byte = 0x00;
-    uart_write(hw_uart, (const char *)&break_byte, 1); // Отправляем 0x00
-    uart_wait_tx_empty(hw_uart);               // Ждем опустошения FIFO
-    
-    // 3. КРИТИЧЕСКИ ВАЖНАЯ ЗАДЕРЖКА
-    // 10 бит (1 старт + 8 данных + 1 стоп) при 9200 бод = 10 / 9200 = 1086 мкс.
-    // Мы должны гарантировать, что сдвиговый регистр полностью вытолкнул байт 
-    // и линия перешла в HIGH, прежде чем мы вернем скорость 19200.
+    // 4. Держим LOW ~1.1 мс. Спецификация Nice BusT4 требует 0.5–1.0 мс.
+    // 1100 мкс гарантированно будут восприняты приемником как валидный break.
     delayMicroseconds(1100);
     
-    uart_set_baudrate(hw_uart, 19200);         // Возвращаем рабочую скорость
-    return;
+    // 5. Возвращаем линию в HIGH (UART idle state)
+    tx_pin->digital_write(true);
+    
+    // 6. Небольшая пауза для стабилизации линии перед тем, как аппаратный 
+    // UART начнет отправлять байт синхронизации 0x55
+    delayMicroseconds(100);
+  } else {
+    // Fallback на случай, если пин по какой-то причине не определен (маловероятно)
+    ESP_LOGW(TAG, "TX pin not available, using simple delay for break");
+    delayMicroseconds(1100);
   }
-#endif
-
-#ifdef USE_ESP32
-  // Fallback для ESP32 в стиле makstech/esphome-BusT4
-  auto *idf_uart = static_cast<esphome::uart::IDFUARTComponent *>(this->parent_);
-  uart_port_t uart_num = static_cast<uart_port_t>(idf_uart->get_hw_serial_number());
-  if (uart_num < UART_NUM_MAX) {
-    uint32_t work_baud = this->parent_->get_baud_rate();
-    uart_set_baudrate(uart_num, 9200);
-    uint8_t break_byte = 0x00;
-    uart_write_bytes(uart_num, (const char *)&break_byte, 1);
-    uart_wait_tx_empty(uart_num);
-    esp_rom_delay_us(1100);
-    uart_set_baudrate(uart_num, work_baud);
-    return;
-  }
-#endif
-
-  // Абсолютный fallback, если платформа не определилась
-  uint8_t break_byte = 0x00;
-  this->write_array(&break_byte, 1);
-  this->flush();
-  delayMicroseconds(1100);
 }
 
 void NiceT4Hub::write(const uint8_t *data, size_t n) {
@@ -118,6 +78,7 @@ void NiceT4Hub::write(const uint8_t *data, size_t n) {
 
 int NiceT4Hub::read_byte() {
   uint8_t b;
+  // Явно вызываем метод из базового класса UARTDevice
   if (this->uart::UARTDevice::read_byte(&b)) {
     return b;
   }
