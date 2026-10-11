@@ -8,8 +8,13 @@ static const char *const TAG = "nice_t4.hub";
 
 void NiceT4Hub::setup() {
   ESP_LOGCONFIG(TAG, "Setting up Nice T4 Hub...");
-  // Инициализируем T4Engine, передавая этот объект как Transport и адрес 0x01
-  engine_ = std::make_unique<T4Engine>(*this, Address(0x01));
+  ESP_LOGCONFIG(TAG, "  Address: 0x%02X", address_);
+  ESP_LOGCONFIG(TAG, "  Identity: 0x%02X", identity_);
+  ESP_LOGCONFIG(TAG, "  Model: %s", model_.c_str());
+  ESP_LOGCONFIG(TAG, "  Allow Write: %s", allow_write_ ? "true" : "false");
+  
+  // Инициализируем T4Engine с адресом из конфигурации
+  engine_ = std::make_unique<T4Engine>(*this, Address(address_));
   engine_->set_bus_idle_ms(100);
   ESP_LOGI(TAG, "Nice T4 Hub initialized (P2 stage)");
 }
@@ -24,16 +29,22 @@ void NiceT4Hub::dump_config() {
   ESP_LOGCONFIG(TAG, "Nice T4 Hub:");
   LOG_PIN("  TX Pin: ", this->tx_pin_);
   LOG_PIN("  RX Pin: ", this->rx_pin_);
+  ESP_LOGCONFIG(TAG, "  Address: 0x%02X", address_);
+  ESP_LOGCONFIG(TAG, "  Identity: 0x%02X", identity_);
+  ESP_LOGCONFIG(TAG, "  Model: %s", model_.c_str());
+  ESP_LOGCONFIG(TAG, "  Allow Write: %s", allow_write_ ? "true" : "false");
 }
 
 void NiceT4Hub::send_break() {
-  // Отправка break-сигнала (низкий уровень ~1 мс)
-  // Для P2 используем базовую реализацию через flush и задержку
   this->flush();
   delay(1);
 }
 
 void NiceT4Hub::write(const uint8_t *data, size_t n) {
+  if (!allow_write_) {
+    ESP_LOGW(TAG, "Write blocked by configuration");
+    return;
+  }
   this->write_array(data, n);
   this->flush();
 }
