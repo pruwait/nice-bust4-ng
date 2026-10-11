@@ -1,21 +1,10 @@
 #include "nice_t4_hub.h"
 #include "esphome/core/log.h"
 
-#ifdef USE_ESP8266
-#include <uart.h> // Аппаратный UART API ядра ESP8266
-#endif
-
 namespace esphome {
 namespace nice_t4 {
 
 static const char *const TAG = "nice_t4.hub";
-
-// Настройки из оригинального рабочего кода pruwait/Nice_BusT4
-static const int UART_NO = UART0;
-static const int TX_PIN = 1; // GPIO1 (стандартный TX ESP8266)
-static const int RX_PIN = 3; // GPIO3 (стандартный RX ESP8266)
-static const uint32_t BAUD_BREAK = 9200;
-static const uint32_t BAUD_WORK = 19200;
 
 void NiceT4Hub::setup() {
   ESP_LOGCONFIG(TAG, "Setting up Nice T4 Hub...");
@@ -24,17 +13,6 @@ void NiceT4Hub::setup() {
   ESP_LOGCONFIG(TAG, "  Model: %s", model_.c_str());
   ESP_LOGCONFIG(TAG, "  Allow Write: %s", allow_write_ ? "true" : "false");
   
-#ifdef USE_ESP8266
-  ESP_LOGW(TAG, "Используется прямой доступ к аппаратному UART0 (GPIO1=TX, GPIO3=RX).");
-  // Инициализируем аппаратный UART напрямую, как в pruwait/Nice_BusT4
-  hw_uart_ = uart_init(UART_NO, BAUD_WORK, SERIAL_8N1, SERIAL_FULL, TX_PIN, 256, false);
-  if (!hw_uart_) {
-    ESP_LOGE(TAG, "Failed to initialize hardware UART");
-    this->mark_failed();
-    return;
-  }
-#endif
-
   engine_ = std::make_unique<T4Engine>(*this, Address(0x00, address_));
   engine_->set_bus_idle_ms(100);
   ESP_LOGI(TAG, "Nice T4 Hub initialized (P2 stage)");
@@ -55,19 +33,19 @@ void NiceT4Hub::dump_config() {
 }
 
 void NiceT4Hub::send_break() {
-#ifdef USE_ESP8266
-  if (hw_uart_) {
-    uart_flush(hw_uart);                                               // очищаем uart
-    uart_set_baudrate(hw_uart, BAUD_BREAK);                            // занижаем бодрэйт до 9200
-    char br_ch = 0x00;
-    uart_write(hw_uart, &br_ch, 1);                                    // отправляем ноль на низкой скорости
-    uart_wait_tx_empty(hw_uart);                                       // ждём опустошения FIFO
-    delayMicroseconds(90);                                             // КРИТИЧЕСКИ ВАЖНАЯ ЗАДЕРЖКА из кода pruwait
-    uart_set_baudrate(hw_uart, BAUD_WORK);                             // возвращаем рабочий бодрэйт 19200
-    return;
-  }
-#endif
-  ESP_LOGW(TAG, "Hardware UART not available, break may be incorrect");
+  // 1. Ждем окончания предыдущей передачи
+  this->flush();
+
+  // 2. Отправляем байт 0x00 на рабочей скорости (19200 бод).
+  // 10 бит (1 старт + 8 данных + 1 стоп) при 19200 бод = 10 / 19200 ≈ 520 мкс.
+  // Согласно спецификации Nice BusT4, приемник терпим к break в диапазоне 0.5–1.0 мс.
+  // 520 мкс попадает в этот диапазон и является стандартным решением (как в gashtaan).
+  uint8_t break_byte = 0x00;
+  this->write_array(&break_byte, 1);
+  this->flush();
+
+  // 3. Небольшая пауза для стабилизации линии перед отправкой основного кадра (0x55)
+  delayMicroseconds(100);
 }
 
 void NiceT4Hub::write(const uint8_t *data, size_t n) {
@@ -75,21 +53,24 @@ void NiceT4Hub::write(const uint8_t *data, size_t n) {
     ESP_LOGW(TAG, "Write blocked by configuration");
     return;
   }
-#ifdef USE_ESP8266
-  if (hw_uart_) {
-    uart_write(hw_uart, (const char *)data, n);
-    uart_wait_tx_empty(hw_uart);
-    return;
+  
+  ESP_LOGD(TAG, ">>> UART write called, size: %d", n);
+  char hex_str[96] = {0};
+  for (size_t i = 0; i < n && i < 32; i++) {
+    sprintf(hex_str + i * 3, "%02X ", data[i]);
   }
-#endif
+  ESP_LOGD(TAG, ">>> Data to TX: %s", hex_str);
+
+  this->write_array(data, n);
+  this->flush();
 }
 
 int NiceT4Hub::read_byte() {
-#ifdef USE_ESP8266
-  if (hw_uart_ && uart_rx_available(hw_uart_) > 0) {
-    return (uint8_t)uart_read_char(hw_uart_);
+  uint8_t b;
+  // Явно вызываем метод из базового класса UARTDevice
+  if (this->uart::UARTDevice::read_byte(&b)) {
+    return b;
   }
-#endif
   return -1;
 }
 
