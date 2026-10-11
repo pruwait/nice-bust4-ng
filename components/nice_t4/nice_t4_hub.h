@@ -4,10 +4,6 @@
 #include "esphome/components/uart/uart.h"
 #include "t4_engine.h"
 
-#ifdef USE_ESP8266
-#include <uart.h>
-#endif
-
 namespace esphome {
 namespace nice_t4 {
 
@@ -41,10 +37,6 @@ class NiceT4Hub : public Component, public uart::UARTDevice, public Transport {
   uint8_t identity_ = 0x01;
   std::string model_ = "auto";
   bool allow_write_ = true;
-
-#ifdef USE_ESP8266
-  uart_t* hw_uart_ = nullptr; // Прямой указатель на аппаратный UART
-#endif
 };
 
 }  // namespace nice_t4
