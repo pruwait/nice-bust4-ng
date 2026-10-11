@@ -14,11 +14,11 @@ void NiceT4Button::dump_config() {
 void NiceT4Button::press_action() {
   ESP_LOGD(TAG, "Button pressed, sending command: 0x%02X", this->command_);
   
-  // TODO P2/P3: Реализовать формирование кадра (Frame) и отправку через T4Engine
-  // Пример:
-  // Frame frame(Address(0x04), Address(0x01), Proto::DEP, {this->command_});
-  // RequestOptions opt;
-  // hub_->get_engine()->submit(frame, opt, nullptr, nullptr);
+  if (hub_) {
+    hub_->send_dep_cmd(this->command_);
+  } else {
+    ESP_LOGE(TAG, "Hub is not initialized!");
+  }
 }
 
 }  // namespace nice_t4
