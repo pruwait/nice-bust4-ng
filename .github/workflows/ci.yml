@@ -1,0 +1,11 @@
+name: host-tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Сгенерированные файлы актуальны
+        run: make gen && git diff --exit-code
+      - name: Тесты кодека, приёма и очереди
+        run: make test
