@@ -1,27 +1,21 @@
 #include "nice_t4_hub.h"
 #include "esphome/core/log.h"
 
-// === Хак для прямого доступа к аппаратному UART на ESP8266 ===
 #ifdef USE_ESP8266
-// Включаем заголовок ДО определения хак-класса, чтобы компилятор знал ESP8266UartComponent
-#include "esphome/components/uart/uart_component_esp8266.h"
-
-namespace esphome {
-namespace uart {
-// Наследуемся, чтобы получить публичный доступ к protected-полю uart_
-class ESP8266UartComponentHack : public ESP8266UartComponent {
- public:
-  uart_t* get_hw_uart() { return this->uart_; }
-};
-}  // namespace uart
-}  // namespace esphome
+#include <uart.h> // Аппаратный UART API ядра ESP8266
 #endif
-// ============================================================
 
 namespace esphome {
 namespace nice_t4 {
 
 static const char *const TAG = "nice_t4.hub";
+
+// Настройки из оригинального рабочего кода pruwait/Nice_BusT4
+static const int UART_NO = UART0;
+static const int TX_PIN = 1; // GPIO1 (стандартный TX ESP8266)
+static const int RX_PIN = 3; // GPIO3 (стандартный RX ESP8266)
+static const uint32_t BAUD_BREAK = 9200;
+static const uint32_t BAUD_WORK = 19200;
 
 void NiceT4Hub::setup() {
   ESP_LOGCONFIG(TAG, "Setting up Nice T4 Hub...");
@@ -30,6 +24,17 @@ void NiceT4Hub::setup() {
   ESP_LOGCONFIG(TAG, "  Model: %s", model_.c_str());
   ESP_LOGCONFIG(TAG, "  Allow Write: %s", allow_write_ ? "true" : "false");
   
+#ifdef USE_ESP8266
+  ESP_LOGW(TAG, "Используется прямой доступ к аппаратному UART0 (GPIO1=TX, GPIO3=RX).");
+  // Инициализируем аппаратный UART напрямую, как в pruwait/Nice_BusT4
+  hw_uart_ = uart_init(UART_NO, BAUD_WORK, SERIAL_8N1, SERIAL_FULL, TX_PIN, 256, false);
+  if (!hw_uart_) {
+    ESP_LOGE(TAG, "Failed to initialize hardware UART");
+    this->mark_failed();
+    return;
+  }
+#endif
+
   engine_ = std::make_unique<T4Engine>(*this, Address(0x00, address_));
   engine_->set_bus_idle_ms(100);
   ESP_LOGI(TAG, "Nice T4 Hub initialized (P2 stage)");
@@ -50,38 +55,19 @@ void NiceT4Hub::dump_config() {
 }
 
 void NiceT4Hub::send_break() {
-  // 1. Очищаем буфер высокоуровневого UART ESPHome
-  this->flush();
-
 #ifdef USE_ESP8266
-  // 2. Получаем прямой доступ к аппаратному UART ESP8266 через хак
-  auto *uart_comp = static_cast<esphome::uart::ESP8266UartComponentHack*>(this->parent_);
-  uart_t *hw_uart = uart_comp->get_hw_uart();
-  
-  if (hw_uart) {
-    uart_flush(hw_uart);                                               // очищаем аппаратный uart
-    uart_set_baudrate(hw_uart, 9200);                                  // занижаем бодрэйт
-    
-    uint8_t br_ch = 0x00;
-    uart_write(hw_uart, (const char *)&br_ch, 1);                      // отправляем ноль на низкой скорости
-    uart_wait_tx_empty(hw_uart);                                       // ждём, пока отправка завершится
-    
-    // 3. КРИТИЧЕСКИ ВАЖНАЯ ЗАДЕРЖКА (из вашего рабочего кода)
-    // В библиотеке uart.h (esp8266 core 3.0.2) ожидания недостаточно.
-    // Без этой задержки скорость переключится раньше отправки последнего бита.
-    delayMicroseconds(90);
-    
-    uart_set_baudrate(hw_uart, 19200);                                 // возвращаем рабочий бодрэйт
+  if (hw_uart_) {
+    uart_flush(hw_uart);                                               // очищаем uart
+    uart_set_baudrate(hw_uart, BAUD_BREAK);                            // занижаем бодрэйт до 9200
+    char br_ch = 0x00;
+    uart_write(hw_uart, &br_ch, 1);                                    // отправляем ноль на низкой скорости
+    uart_wait_tx_empty(hw_uart);                                       // ждём опустошения FIFO
+    delayMicroseconds(90);                                             // КРИТИЧЕСКИ ВАЖНАЯ ЗАДЕРЖКА из кода pruwait
+    uart_set_baudrate(hw_uart, BAUD_WORK);                             // возвращаем рабочий бодрэйт 19200
     return;
   }
 #endif
-
-  // Fallback на случай, если хак не сработал (например, компиляция под другую платформу)
-  ESP_LOGW(TAG, "Hardware UART access failed, using fallback break");
-  uint8_t br_ch = 0x00;
-  this->write_array(&br_ch, 1);
-  this->flush();
-  delayMicroseconds(100);
+  ESP_LOGW(TAG, "Hardware UART not available, break may be incorrect");
 }
 
 void NiceT4Hub::write(const uint8_t *data, size_t n) {
@@ -89,24 +75,21 @@ void NiceT4Hub::write(const uint8_t *data, size_t n) {
     ESP_LOGW(TAG, "Write blocked by configuration");
     return;
   }
-  
-  ESP_LOGD(TAG, ">>> UART write called, size: %d", n);
-  char hex_str[96] = {0};
-  for (size_t i = 0; i < n && i < 32; i++) {
-    sprintf(hex_str + i * 3, "%02X ", data[i]);
+#ifdef USE_ESP8266
+  if (hw_uart_) {
+    uart_write(hw_uart, (const char *)data, n);
+    uart_wait_tx_empty(hw_uart);
+    return;
   }
-  ESP_LOGD(TAG, ">>> Data to TX: %s", hex_str);
-
-  this->write_array(data, n);
-  this->flush();
+#endif
 }
 
 int NiceT4Hub::read_byte() {
-  uint8_t b;
-  // Явно вызываем метод из базового класса UARTDevice, чтобы избежать конфликта имён
-  if (this->uart::UARTDevice::read_byte(&b)) {
-    return b;
+#ifdef USE_ESP8266
+  if (hw_uart_ && uart_rx_available(hw_uart_) > 0) {
+    return (uint8_t)uart_read_char(hw_uart_);
   }
+#endif
   return -1;
 }
 
