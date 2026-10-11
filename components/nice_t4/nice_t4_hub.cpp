@@ -1,6 +1,22 @@
 #include "nice_t4_hub.h"
 #include "esphome/core/log.h"
 
+// === Хак для прямого доступа к аппаратному UART на ESP8266 ===
+#ifdef USE_ESP8266
+#include <uart.h> // Аппаратные функции ядра ESP8266
+
+namespace esphome {
+namespace uart {
+// Наследуемся, чтобы получить доступ к protected-полю uart_
+class ESP8266UartComponentHack : public ESP8266UartComponent {
+ public:
+  uart_t* get_hw_uart() { return this->uart_; }
+};
+}  // namespace uart
+}  // namespace esphome
+#endif
+// ============================================================
+
 namespace esphome {
 namespace nice_t4 {
 
@@ -33,28 +49,54 @@ void NiceT4Hub::dump_config() {
 }
 
 void NiceT4Hub::send_break() {
-  // 1. Очищаем буфер отправки
+  // 1. Очищаем высокоуровневые буферы ESPHome
   this->flush();
+
+#ifdef USE_ESP8266
+  // 2. Прямой доступ к аппаратному UART ESP8266
+  auto *uart_comp = static_cast<esphome::uart::ESP8266UartComponentHack*>(this->parent_);
+  uart_t *hw_uart = uart_comp->get_hw_uart();
   
-  // 2. Занижаем бодрейт до 9200. 
-  // На скорости 9200 бит длится ~108 мкс. Байт 0x00 (10 бит: старт + 8 данных + стоп) 
-  // даст низкий уровень ~1080 мкс (1.08 мс), что идеально попадает в спецификацию Nice (0.5–1 мс).
-  this->parent_->set_baud_rate(9200);
-  
-  // 3. Отправляем байт 0x00
-  uint8_t br_ch = 0x00;
-  this->write_array(&br_ch, 1);
+  if (hw_uart) {
+    uart_flush(hw_uart);                       // Очищаем аппаратный FIFO
+    uart_set_baudrate(hw_uart, 9200);          // Переключаем на 9200 бод
+    
+    uint8_t break_byte = 0x00;
+    uart_write(hw_uart, (const char *)&break_byte, 1); // Отправляем 0x00
+    uart_wait_tx_empty(hw_uart);               // Ждем опустошения FIFO
+    
+    // 3. КРИТИЧЕСКИ ВАЖНАЯ ЗАДЕРЖКА
+    // 10 бит (1 старт + 8 данных + 1 стоп) при 9200 бод = 10 / 9200 = 1086 мкс.
+    // Мы должны гарантировать, что сдвиговый регистр полностью вытолкнул байт 
+    // и линия перешла в HIGH, прежде чем мы вернем скорость 19200.
+    delayMicroseconds(1100);
+    
+    uart_set_baudrate(hw_uart, 19200);         // Возвращаем рабочую скорость
+    return;
+  }
+#endif
+
+#ifdef USE_ESP32
+  // Fallback для ESP32 в стиле makstech/esphome-BusT4
+  auto *idf_uart = static_cast<esphome::uart::IDFUARTComponent *>(this->parent_);
+  uart_port_t uart_num = static_cast<uart_port_t>(idf_uart->get_hw_serial_number());
+  if (uart_num < UART_NUM_MAX) {
+    uint32_t work_baud = this->parent_->get_baud_rate();
+    uart_set_baudrate(uart_num, 9200);
+    uint8_t break_byte = 0x00;
+    uart_write_bytes(uart_num, (const char *)&break_byte, 1);
+    uart_wait_tx_empty(uart_num);
+    esp_rom_delay_us(1100);
+    uart_set_baudrate(uart_num, work_baud);
+    return;
+  }
+#endif
+
+  // Абсолютный fallback, если платформа не определилась
+  uint8_t break_byte = 0x00;
+  this->write_array(&break_byte, 1);
   this->flush();
-  
-  // 4. КРИТИЧЕСКИ ВАЖНАЯ ЗАДЕРЖКА (из вашего старого кода uart_break.ino)
-  // В ядре ESP8266 функции ожидания окончания передачи недостаточно перед мгновенной 
-  // сменой бодрейта. Без этой задержки последний бит break-сигнала обрезается или 
-  // уходит на новой скорости, что портит форму сигнала на логическом анализаторе.
-  // 90 мкс дают идеальный сигнал break на Wemos D1 Mini / ESP8266.
-  delayMicroseconds(90);
-  
-  // 5. Возвращаем рабочий бодрейт 19200 для основной передачи данных
-  this->parent_->set_baud_rate(19200);
+  delayMicroseconds(1100);
 }
 
 void NiceT4Hub::write(const uint8_t *data, size_t n) {
@@ -76,7 +118,6 @@ void NiceT4Hub::write(const uint8_t *data, size_t n) {
 
 int NiceT4Hub::read_byte() {
   uint8_t b;
-  // Явно вызываем метод из базового класса UARTDevice, чтобы избежать конфликта имён
   if (this->uart::UARTDevice::read_byte(&b)) {
     return b;
   }
