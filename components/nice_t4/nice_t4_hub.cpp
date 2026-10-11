@@ -33,19 +33,27 @@ void NiceT4Hub::dump_config() {
 }
 
 void NiceT4Hub::send_break() {
-  // Дожидаемся окончания всех предыдущих передач
+  // 1. Дожидаемся окончания всех предыдущих передач
   this->flush();
   
-  // Отправляем два байта 0x00 для получения break-сигнала ~1 мс.
-  // На 19200 бод: 2 байта × 10 бит (start + 8 data + stop) × 52 мкс = 1040 мкс ≈ 1 мс.
-  // Спецификация Nice BusT4: break 0.5–1 мс, приёмник терпим к этому диапазону.
-  // Это совпадает с реализациями pruwait и makstech.
-  uint8_t break_bytes[2] = {0x00, 0x00};
-  this->write_array(break_bytes, 2);
+  // 2. Сохраняем текущую скорость UART (обычно 19200)
+  uint32_t current_baud = this->parent_->get_baud_rate();
+  
+  // 3. Переключаем UART на 9200 бод.
+  // Отправка одного байта 0x00 на этой скорости даст низкий уровень ~1.08 мс 
+  // (10 бит * 108 мкс), что идеально соответствует спецификации Nice BusT4 (0.5–1 мс).
+  this->parent_->set_baud_rate(9200);
+  
+  // 4. Отправляем байт 0x00 как break-сигнал
+  uint8_t break_byte = 0x00;
+  this->write_array(&break_byte, 1);
   this->flush();
   
-  // Небольшая пауза перед основной командой
+  // 5. Небольшая задержка для гарантии завершения передачи байта на новой скорости
   delay(1);
+  
+  // 6. Возвращаем исходную скорость UART для основной передачи данных
+  this->parent_->set_baud_rate(current_baud);
 }
 
 void NiceT4Hub::write(const uint8_t *data, size_t n) {
@@ -67,6 +75,7 @@ void NiceT4Hub::write(const uint8_t *data, size_t n) {
 
 int NiceT4Hub::read_byte() {
   uint8_t b;
+  // Явно вызываем метод из базового класса UARTDevice, чтобы избежать конфликта имён
   if (this->uart::UARTDevice::read_byte(&b)) {
     return b;
   }
