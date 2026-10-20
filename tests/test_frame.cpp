@@ -120,3 +120,24 @@ TEST(response_matching) {
   CHECK(response_matches(who, F(V("Ответ приёмника OXI"))));
   CHECK(response_matches(who, F(V("Ответ блока управления"))));
 }
+
+TEST(format_hex_is_bounded) {
+  const uint8_t d[4] = {0x55, 0x0D, 0x00, 0xFF};
+  char b[32];
+  CHECK_EQ(format_hex(d, 4, b, sizeof(b)), 11u);
+  CHECK(strcmp(b, "55 0D 00 FF") == 0);
+  char small[8];                         // «55 0D » и ноль: только два байта целиком
+  size_t n = format_hex(d, 4, small, sizeof(small));
+  CHECK_EQ(n, 5u);
+  CHECK(strcmp(small, "55 0D") == 0);
+  char one[1];
+  CHECK_EQ(format_hex(d, 4, one, sizeof(one)), 0u);
+  CHECK_EQ(format_hex(d, 0, b, sizeof(b)), 0u);
+  CHECK(strlen(b) == 0);
+  // самый длинный кадр помещается в буфер для логов без выхода за границу
+  uint8_t big[kMaxFrame]; memset(big, 0xAB, sizeof(big));
+  char lb[kMaxFrame * 3 + 1];
+  CHECK_EQ(format_hex(big, sizeof(big), lb, sizeof(lb)), kMaxFrame * 3u - 1u);
+  char tiny[10];
+  CHECK_EQ(format_hex(big, sizeof(big), tiny, sizeof(tiny)), 8u);  // два байта и пробелы, без переполнения
+}

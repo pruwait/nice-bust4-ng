@@ -12,6 +12,11 @@ bool T4Engine::submit(const Frame &f, const RequestOptions &o, ResponseCb cb, vo
   Slot &s = slots_[(head_ + count_) % kQueueSize];
   s.frame = f;
   s.opt = o;
+  if (f.is_dep()) {
+    s.opt.expect_response = false;
+    s.opt.multi_response = false;
+    s.opt.retries = 0;
+  }
   s.cb = cb;
   s.ctx = ctx;
   count_++;

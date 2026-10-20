@@ -210,3 +210,29 @@ TEST(chunk_reader_reports_errors) {
   CHECK(c3.feed(F(V("Ответ: автозакрывание включено"))) == ChunkReader::State::ERROR);   // другой регистр
   CHECK(c3.error() == ChunkReader::Error::BAD_RESPONSE);
 }
+
+TEST(engine_sends_dep_command_exactly_once) {
+  // Регрессия: команды DEP не имеют ответа DMP, поэтому повторов быть не должно (SBS не «щёлкает» трижды).
+  FakeTransport tr; T4Engine e(tr, Address(0, 0x66)); Rec rec; rec.tr = &tr;
+  RequestOptions o;                      // по умолчанию expect_response = true, retries = 2
+  o.timeout_ms = 500;
+  CHECK(e.submit(make_cmd(Address(0, 0xFF), Address(0, 0x66), cmd::SBS), o, on_result, &rec));
+  e.loop();
+  run_for(e, tr, 3000);
+  CHECK_EQ(tr.frames().size(), 1u);
+  CHECK(tr.frames()[0].data == V("SBS (шаг за шагом)"));
+  CHECK_EQ(rec.results.size(), 1u);
+  CHECK(rec.results[0] == Result::SENT);
+  CHECK_EQ(e.stats().tx_retries, 0u);
+}
+
+TEST(engine_set_self_changes_echo_filter) {
+  FakeTransport tr; T4Engine e(tr, Address(0, 0x01));
+  int events = 0;
+  e.set_event_callback([](void *c, const Frame &) { (*static_cast<int *>(c))++; }, &events);
+  e.set_self(Address(0, 0x03));
+  tr.inject(V("EVT sub 40: движение при закрывании"));   // from 00 03 теперь «своё» и считается эхом
+  e.loop();
+  CHECK_EQ(events, 0);
+  CHECK_EQ(e.stats().echoes, 1u);
+}

@@ -9,6 +9,21 @@ uint8_t xor_sum(const uint8_t *data, size_t n) {
   return r;
 }
 
+size_t format_hex(const uint8_t *data, size_t n, char *out, size_t cap) {
+  static const char kDigits[] = "0123456789ABCDEF";
+  if (cap == 0) return 0;
+  size_t pos = 0;
+  for (size_t i = 0; i < n; i++) {
+    if (pos + 3 + 1 > cap) break;  // два символа, пробел и завершающий ноль
+    out[pos++] = kDigits[data[i] >> 4];
+    out[pos++] = kDigits[data[i] & 0x0F];
+    out[pos++] = ' ';
+  }
+  if (pos > 0) pos--;  // последний пробел
+  out[pos] = '\0';
+  return pos;
+}
+
 size_t encode(const Frame &f, uint8_t *out, size_t cap) {
   if (f.msg_len < 2 || f.msg_len > kMaxMsg) return 0;
   const size_t body = kHeaderLen + f.msg_len + 1;

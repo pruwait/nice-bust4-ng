@@ -50,7 +50,10 @@ class T4Engine {
     ev_cb_ = cb;
     ev_ctx_ = ctx;
   }
+  // Кадры DEP (команды) ответа DMP не имеют: они уходят один раз без повторов и без ожидания ответа.
+  // RSP приходит как событие. Так SBS не отправляется трижды.
   bool submit(const Frame &f, const RequestOptions &o, ResponseCb cb, void *ctx);
+  void set_self(Address a) { self_ = a; }
   void loop();  // вызывать из loop() компонента, не блокирует (кроме send_break)
 
   uint8_t queued() const { return count_; }

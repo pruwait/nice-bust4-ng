@@ -32,6 +32,10 @@ struct Frame {
 
 uint8_t xor_sum(const uint8_t *data, size_t n);
 
+// Безопасный hex-дамп "XX XX ..." в out (с завершающим нулём, обрезается по cap).
+// Возвращает число записанных символов без нуля. Заменяет самодельные sprintf-циклы в логах.
+size_t format_hex(const uint8_t *data, size_t n, char *out, size_t cap);
+
 // Возвращает число записанных байт (55, SIZE, тело, SIZE) или 0 при ошибке.
 size_t encode(const Frame &f, uint8_t *out, size_t cap);
 // buf начинается с 0x55 и содержит ровно один кадр.
