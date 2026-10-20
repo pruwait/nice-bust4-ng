@@ -1,11 +1,21 @@
-name: host-tests
+name: ci
 on: [push, pull_request]
 jobs:
-  test:
+  host-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Сгенерированные файлы актуальны
         run: make gen && git diff --exit-code
-      - name: Тесты кодека, приёма и очереди
+      - name: Тесты ядра (кодек, приём, очередь, состояния)
         run: make test
+  esphome-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install esphome
+      - name: Конфигурации yaml и синтаксис C++ против заголовков ESPHome
+        run: ./tools/check_esphome.sh

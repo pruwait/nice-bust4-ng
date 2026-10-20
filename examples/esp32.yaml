@@ -1,36 +1,47 @@
-# ЧЕРНОВИК целевого формата (P2). Компонент ещё не реализован: файл показывает, как будет выглядеть конфигурация.
 esphome:
   name: gate
+
 esp32:
   board: esp32dev
+  framework:
+    type: esp-idf
+
+external_components:
+  - source: github://pruwait/nice-bust4-ng@main
+    components: [nice_t4]
+
+logger:
 
 uart:
   id: t4_uart
   tx_pin: GPIO17
   rx_pin: GPIO16
-  baud_rate: 19200
+  baud_rate: 19200          # другие параметры uart компонент отвергает (19200, 8N1)
 
 nice_t4:
   id: gate_hub
   uart_id: t4_uart
-  address: 0x0066        # ADR и EPT самого модуля
-  identity: oview        # oview | it4wifi
-  model: auto
-  allow_write: false     # запись параметров только по явному включению
+  address: 0x0066           # ADR и EPT самого модуля (16 бит)
+  target: 0x00FF            # куда слать команды: 0x00FF это все устройства сети 0
+  identity: oview           # oview | it4wifi (it4wifi нужен для команд блокировки, не проверено)
+  break_mode: byte          # byte: простой байт 00 на 19200 (проверено на RB500HS), baud: 00 на 9200
+  allow_commands: true      # команды управления (открыть, закрыть, SBS и т. д.)
+  allow_write: false        # запись параметров привода (SET), по умолчанию выключена
+  status_poll_interval: 15s # опрос состояния; 0s отключает
 
 cover:
   - platform: nice_t4
-    nice_t4_id: gate_hub
     name: Ворота
 
 button:
   - platform: nice_t4
-    nice_t4_id: gate_hub
-    command: PARTIAL_OPEN_1
+    command: partial_open_1   # имя из command_codes.py или код, например 0x05
     name: Калитка
 
 text_sensor:
   - platform: nice_t4
-    nice_t4_id: gate_hub
-    type: menu_json
-    name: Меню привода
+    type: status              # open, closed, opening, closing, stopped, partial
+    name: Состояние ворот
+  - platform: nice_t4
+    type: last_event          # последний принятый кадр события (hex), для отладки
+    name: Последнее событие

@@ -1,66 +1,46 @@
-# Board: Generic ESP8266 Board (Generic)
-# Definition: definitions/boards/generic-esp8266/manifest.yaml
-
 esphome:
   name: gate
-  friendly_name: gate
 
 esp8266:
   board: d1_mini
+
 external_components:
-  - source:
-      type: git
-      url: https://github.com/pruwait/nice-bust4-ng
+  - source: github://pruwait/nice-bust4-ng@main
     components: [nice_t4]
-    refresh: 0s 
+
 logger:
-  level: DEBUG
-  baud_rate: 0    
-ota:
-  - platform: esphome
-# Set statul led for Wemos D1 mini
-status_led:
-  pin: 
-    number: D4
-    inverted: true
-  
-wifi:
-  ssid: !secret wifi_ssid
-  password:  !secret wifi_password
-  min_auth_mode: WPA2  
-  ap:
-    password: ""
-captive_portal:
-web_server:
-  port: 80  
+  baud_rate: 0              # UART0 занят шиной T4, лог по serial отключён
 
 uart:
   id: t4_uart
-  tx_pin: GPIO1     # UART0; логгер перенести на UART1 или отключить
+  tx_pin: GPIO1
   rx_pin: GPIO3
-  baud_rate: 19200
+  baud_rate: 19200          # другие параметры uart компонент отвергает (19200, 8N1)
 
 nice_t4:
   id: gate_hub
   uart_id: t4_uart
-  address: 0x0066        # ADR и EPT самого модуля
-  identity: oview        # oview | it4wifi
-  model: auto
-  allow_write: false     # запись параметров только по явному включению
+  address: 0x0066           # ADR и EPT самого модуля (16 бит)
+  target: 0x00FF            # куда слать команды: 0x00FF это все устройства сети 0
+  identity: oview           # oview | it4wifi (it4wifi нужен для команд блокировки, не проверено)
+  break_mode: byte          # byte: простой байт 00 на 19200 (проверено на RB500HS), baud: 00 на 9200
+  allow_commands: true      # команды управления (открыть, закрыть, SBS и т. д.)
+  allow_write: false        # запись параметров привода (SET), по умолчанию выключена
+  status_poll_interval: 15s # опрос состояния; 0s отключает
 
 cover:
   - platform: nice_t4
-    nice_t4_id: gate_hub
     name: Ворота
 
 button:
   - platform: nice_t4
-    nice_t4_id: gate_hub
-    command: PARTIAL_OPEN_1
+    command: partial_open_1   # имя из command_codes.py или код, например 0x05
     name: Калитка
 
 text_sensor:
   - platform: nice_t4
-    nice_t4_id: gate_hub
-    type: menu_json
-    name: Меню привода
+    type: status              # open, closed, opening, closing, stopped, partial
+    name: Состояние ворот
+  - platform: nice_t4
+    type: last_event          # последний принятый кадр события (hex), для отладки
+    name: Последнее событие
