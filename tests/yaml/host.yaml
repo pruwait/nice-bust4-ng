@@ -1,0 +1,27 @@
+esphome:
+  name: gate
+host:
+logger:
+external_components:
+  - source:
+      type: local
+      path: ../../components
+    components: [nice_t4]
+uart:
+  id: t4_uart
+  baud_rate: 19200
+  port: /dev/null
+nice_t4:
+  id: gate_hub
+  uart_id: t4_uart
+cover:
+  - platform: nice_t4
+    name: Gate
+button:
+  - platform: nice_t4
+    command: sbs
+    name: SBS
+text_sensor:
+  - platform: nice_t4
+    type: status
+    name: Gate state

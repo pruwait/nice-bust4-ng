@@ -1,0 +1,18 @@
+# Ожидается ошибка конфигурации: тип menu_json ещё не реализован
+esphome:
+  name: gate
+esp32:
+  board: esp32dev
+external_components:
+  - source: {type: local, path: ../../components}
+    components: [nice_t4]
+uart:
+  id: t4_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 19200
+nice_t4:
+text_sensor:
+  - platform: nice_t4
+    type: menu_json
+    name: Menu

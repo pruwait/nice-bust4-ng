@@ -1,0 +1,15 @@
+# Ожидается ошибка конфигурации: EPT 0xFF (широковещание) как адрес модуля
+esphome:
+  name: gate
+esp32:
+  board: esp32dev
+external_components:
+  - source: {type: local, path: ../../components}
+    components: [nice_t4]
+uart:
+  id: t4_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 19200
+nice_t4:
+  address: 0x00FF

@@ -33,4 +33,14 @@ for r in sorted(dep, key=lambda r: r["cmd"]):
     c = ident(r["const"]); assert c not in seen; seen.add(c)
     txt += f"  {c} = 0x{r['cmd']:02X},\n"
 open(out / "t4_cmds.h", "w", encoding="utf-8").write(txt + "};\n\n" + FTR)
-print("generated t4_registers.h, t4_cmds.h")
+
+# command_codes.py: имена команд DEP для yaml (button.command)
+names = {}
+for r in sorted(dep, key=lambda r: r["cmd"]):
+    n = re.sub(r"^CTRL_", "", r["const"]).lower()
+    assert n not in names, n
+    names[n] = r["cmd"]
+body = "# Файл создан tools/gen_registers.py, вручную не править.\nDEP_COMMANDS = {\n"
+body += "".join(f'    "{n}": 0x{c:02X},\n' for n, c in names.items()) + "}\n"
+open(out / "command_codes.py", "w", encoding="utf-8").write(body)
+print("generated t4_registers.h, t4_cmds.h, command_codes.py")

@@ -1,4 +1,5 @@
 #include "nice_t4_button.h"
+
 #include "esphome/core/log.h"
 
 namespace esphome {
@@ -8,20 +9,11 @@ static const char *const TAG = "nice_t4.button";
 
 void NiceT4Button::dump_config() {
   LOG_BUTTON("", "Nice T4 Button", this);
-  ESP_LOGCONFIG(TAG, "  Command: 0x%02X", this->command_);
+  ESP_LOGCONFIG(TAG, "  Команда DEP: 0x%02X", command_);
 }
 
 void NiceT4Button::press_action() {
-  ESP_LOGD(TAG, ">>> Button pressed, command: 0x%02X", this->command_);
-  
-  if (hub_) {
-    bool res = hub_->send_dep_cmd(this->command_);
-    if (!res) {
-      ESP_LOGE(TAG, ">>> send_dep_cmd returned false!");
-    }
-  } else {
-    ESP_LOGE(TAG, ">>> Hub pointer is null!");
-  }
+  if (!hub_->send_dep_cmd(command_)) ESP_LOGW(TAG, "Команда 0x%02X не отправлена", command_);
 }
 
 }  // namespace nice_t4

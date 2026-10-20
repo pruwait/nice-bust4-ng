@@ -1,0 +1,46 @@
+esphome:
+  name: gate
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+external_components:
+  - source:
+      type: local
+      path: ../../components
+    components: [nice_t4]
+logger:
+uart:
+  id: t4_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 19200
+nice_t4:
+  id: gate_hub
+  uart_id: t4_uart
+  address: 0x0066
+  target: 0x00FF
+  identity: oview
+  break_mode: byte
+  allow_write: false
+  status_poll_interval: 15s
+cover:
+  - platform: nice_t4
+    name: Gate
+button:
+  - platform: nice_t4
+    command: sbs
+    name: SBS
+  - platform: nice_t4
+    command: partial_open_1
+    name: Pedestrian
+  - platform: nice_t4
+    command: 0x1B
+    name: Raw code
+text_sensor:
+  - platform: nice_t4
+    type: status
+    name: Gate state
+  - platform: nice_t4
+    type: last_event
+    name: Last event

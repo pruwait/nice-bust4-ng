@@ -1,0 +1,14 @@
+# Ожидается ошибка конфигурации: скорость uart не 19200
+esphome:
+  name: gate
+esp32:
+  board: esp32dev
+external_components:
+  - source: {type: local, path: ../../components}
+    components: [nice_t4]
+uart:
+  id: t4_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 9600
+nice_t4:
